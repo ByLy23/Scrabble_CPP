@@ -1,83 +1,33 @@
 #ifndef CUBODISPERSO_H_INCLUDED
 #define CUBODISPERSO_H_INCLUDED
-#include "Cancion.h"
-#include "EDD/ListaSimple.h"
+#include "ListaSimple.h"
 #include <iostream>
 
 using namespace std;
-
+//arreglos matriz
+/*
+Primero, vamos a verificar ingreso, lo cual va a ser en orden, del 0 hasta el numero que salga, en orden
+vamos a guardar, Casilla(punteo),string letra
+*/
 class CuboDisperso
 {
     class Nodo
     {
         Nodo *siguiente;
         Nodo *anterior;
-        Nodo *atras;
-        Nodo *adelante;
         Nodo *arriba;
         Nodo *abajo;
         int fila;
         int columna;
+        string letra;
         int tamanio;
-        string nombreAlbum;
-        ListaSimple<Cancion*> *listaCancion;
     public:
-        Nodo(string nombre, int fila, int columna, ListaSimple<Cancion*> *canciones)
+        Nodo(string letra, int fila, int columna)
         {
-            this->nombreAlbum=nombre;
             this->fila=fila;
             this->columna=columna;
-            this->listaCancion=canciones;
-            siguiente=anterior=arriba=abajo=atras=adelante=0;
-        }
-        Nodo(int fila)//nodo de cabecera de filas
-        {
-            this->anio=fila;
-            nombreAlbum="";
-            mes="";
-            listaCancion=0;
-            siguiente=anterior=arriba=abajo=atras=adelante=0;
-        }
-        Nodo(string columna)//nodo cabecera de columnas
-        {
-
-           anio=-1;
-            nombreAlbum="";
-            this->mes=columna;
-            listaCancion=0;
-            siguiente=anterior=arriba=abajo=atras=adelante=0;
-        }
-        int getAnio()
-        {
-            return anio;
-        }
-        string getMes()
-        {
-            return mes;
-        }
-        string getNombreAlbum()
-        {
-            return nombreAlbum;
-        }
-        ListaSimple<Cancion*> *getCanciones()
-        {
-            return listaCancion;
-        }
-        void setAnio(int anio)
-        {
-            this->anio=anio;
-        }
-        void setMes(string mes)
-        {
-            this->mes=mes;
-        }
-        void setNombreAlbum(string nombreAlbum)
-        {
-            this->nombreAlbum=nombreAlbum;
-        }
-        void setListaCanciones(ListaSimple<Cancion*> *listaCanciones)
-        {
-            this->listaCancion=listaCanciones;
+            this->letra=letra;
+            siguiente=anterior=arriba=abajo=0;
         }
         Nodo *getSiguiente()
         {
@@ -135,7 +85,7 @@ class CuboDisperso
     {
         raiz= new Nodo("raiz", -1, "raiz",NULL);
     }
-    Nodo *busquedaNodo(int columna, string fila)
+    Nodo *busquedaNodo(int columna, int fila)
 {
     bool bandera=false;
         Nodo *retorno=0;
