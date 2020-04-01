@@ -1,8 +1,9 @@
 # depslib dependency file v1.0
-1585717782 source:a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\main.cpp
+1585769718 source:a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\main.cpp
 	<iostream>
 	"json/json.h"
 	"json/jsoncpp.cpp"
+	"Coordenada.h"
 
 1576285465 a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\json\json.h
 	<cstring>
@@ -124,4 +125,11 @@
 	<cstdlib>
 	<sstream>
 	"config.h"
+
+1585770652 a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\coordenada.h
+	<iostream>
+
+1585770673 source:a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\coordenada.cpp
+	"Coordenada.h"
+	<iostream>
 

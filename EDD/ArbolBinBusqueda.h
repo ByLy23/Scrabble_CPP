@@ -10,7 +10,7 @@ class NodoABB
         public:
         NodoABB *derecho;
         NodoABB *izquierdo;
-        NodoABB(string nombre, Playlist *lista)
+        NodoABB(string nombre)
         {
             nombreNodoABB=nombre;
             listaPla=lista;
