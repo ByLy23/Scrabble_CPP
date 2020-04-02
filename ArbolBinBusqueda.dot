@@ -1,0 +1,16 @@
+digraph graficaArbolito{ 
+ linkdir=LR 
+Original[shape= circle label="Original"];
+Abedul[shape= circle label="Abedul"];
+Abedul[shape= circle label="Abedul"];
+Original[shape= circle label="Original"];
+Quetzal[shape= circle label="Quetzal"];
+Quetzal[shape= circle label="Quetzal"];
+
+Original->Abedul
+Abedul->Aa
+Abedul->Beto
+Original->Quetzal
+Quetzal->Papa
+Quetzal->Raro
+}

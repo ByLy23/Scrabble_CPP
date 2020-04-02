@@ -1,0 +1,4 @@
+digraph graficaPostrden{ 
+ linkdir=LR 
+ arreglo[shape= record label= "{Raro|Papa|Quetzal|Beto|Aa|Abedul|Original||}"];
+}

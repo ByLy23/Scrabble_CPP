@@ -1,27 +1,29 @@
 #ifndef ARBOLBINBUSQUEDA_H_INCLUDED
 #define ARBOLBINBUSQUEDA_H_INCLUDED
-#include "Playlist.h"
 #include <iostream>
 using namespace std;
 class NodoABB
     {
         string nombreNodoABB;
-        Playlist *listaPla;
         public:
         NodoABB *derecho;
         NodoABB *izquierdo;
+        NodoABB()
+        {
+            nombreNodoABB="";
+            izquierdo=derecho=0;
+        }
         NodoABB(string nombre)
         {
             nombreNodoABB=nombre;
-            listaPla=lista;
         }
         void setNombre(string nombre)
         {
             nombreNodoABB= nombre;
         }
-        void setLista(Playlist *lista)
+        string getNombre()
         {
-            listaPla=lista;
+            return nombreNodoABB;
         }
         void setIzquierdo(NodoABB *izq)
         {
@@ -31,10 +33,6 @@ class NodoABB
         {
             this->derecho=der;
         }
-        Playlist *getPlaylist()
-        {
-            return listaPla;
-        }
         NodoABB *getIzquierdo()
         {
             return izquierdo;
@@ -43,57 +41,86 @@ class NodoABB
         {
             return derecho;
         }
-        string getNombre()
-        {
-            return nombreNodoABB;
-        }
     };
 class ArbolBusqueda{
+private:
+    string cuerpo="";
+    string enlaces="";
+
     public:
+         string getCuerpo(){
+        return cuerpo;
+    }
+    string getEnlaces(){
+        return enlaces;
+    }
+    void setCuerpo(string cuerpo)
+    {
+        this->cuerpo=cuerpo;
+    }
+    void setEnlaces(string enlaces)
+    {
+        this->enlaces=enlaces;
+    }
     ArbolBusqueda(){
     }
-    NodoABB *crearNodoABB(string nombre, Playlist *lista)
+        void imprimirNodo(NodoABB*, int);
+    NodoABB *crearNodoABB(string nombre)
     {
-        NodoABB *nuevo= new NodoABB(nombre,lista);
+        NodoABB *nuevo= new NodoABB(nombre);
         nuevo->setNombre(nombre);
-        nuevo->setLista(lista);
         nuevo->setIzquierdo(0);
         nuevo->setDerecho(0);
         return nuevo;
     }
-    void insertarNodoABB(NodoABB *&arbol, string nombre, Playlist *lista)
+    void inorden(NodoABB *arbol)
+    {
+        if(arbol!=0)
+        {
+            inorden(arbol->getDerecho());
+            cuerpo+=arbol->getNombre()+"|";
+            inorden(arbol->getIzquierdo());
+        }
+    }
+    void preorden(NodoABB *arbol)
+    {
+        if(arbol!=0)
+        {
+            cuerpo+=arbol->getNombre()+"|";
+            preorden(arbol->getIzquierdo());
+            preorden(arbol->getDerecho());
+        }
+    }
+    void postOrden(NodoABB *arbol)
+    {
+        if(arbol!=0)
+        {
+            postOrden(arbol->getIzquierdo());
+            postOrden(arbol->getDerecho());
+            cuerpo+=arbol->getNombre()+"|";
+        }
+    }
+    void insertarNodoABB(NodoABB *&arbol, string nombre)
     {
         if(arbol==0)
         {
-            NodoABB *nuevo= crearNodoABB(nombre, lista);
+            NodoABB *nuevo= crearNodoABB(nombre);
             arbol=nuevo;
             arbol->getIzquierdo();
         }
         else{
                 string nombreComparar= arbol->getNombre();
-                if(nombre.compare(nombreComparar)<0)
+                if(nombre.compare(nombreComparar)==0)
                 {
-                    insertarNodoABB(arbol->izquierdo,nombre,lista);
+                    cout<<"Nombre Repetido"<<endl;
+                }
+                else if(nombre.compare(nombreComparar)>0)
+                {
+                    insertarNodoABB(arbol->izquierdo,nombre);
                 }
                 else{
-                    insertarNodoABB(arbol->derecho,nombre,lista);
+                    insertarNodoABB(arbol->derecho,nombre);
                 }
-        }
-    }
-    void imprimirNodo(NodoABB *arbol, int contador)
-    {
-        if(arbol==0)
-        {
-            return;
-        }
-        else{
-            imprimirNodo(arbol->derecho,contador+1);
-            for(int i=0; i<contador;i++);
-            {
-                cout<<"         "<<endl;
-            }
-            cout<<arbol->getNombre()<<endl;
-            imprimirNodo(arbol->izquierdo,contador+1);
         }
     }
 };
