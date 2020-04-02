@@ -15,16 +15,16 @@ void leerJSON();
 void graficarReportes(string, string);
 void mostrarReportes(ArbolBusqueda*);
 NodoABB *raiz;
+    static int DimensionTablero=0;
     int contadorAux=0;
+   // Aca van a ir las listas que se utilizaran en todo el programa
+   ListaDobleCircular<string> *DiccionarioPalabras= new ListaDobleCircular<string>();
 int main()
 {
     //Aca van a ir todas las variables necesarias
-    static int DimensionTablero=0;
     int contadorMenu=0;
     string nombreUser="";
     raiz=new NodoABB();
-   // Aca van a ir las listas que se utilizaran en todo el programa
-   ListaDobleCircular<string> *DiccionarioPalabras= new ListaDobleCircular<string>();
    ArbolBusqueda *arbolUsuarios= new ArbolBusqueda();
 
     //Aca va a ir el menu
@@ -40,16 +40,15 @@ int main()
         {
         case 1:
             //inicioJuego();
-            cout<<"Inicio paso"<<endl;
-            cin>>nombreUser;
-            arbolUsuarios->insertarNodoABB(raiz, nombreUser);
-            cout<<"Ingresado"<<endl;
             break;
         case 2:
             leerJSON();
             break;
         case 3:
-            //agregarUsuario();
+            system("cls");
+            cout<<"Ingresar Usuario"<<endl;
+            cin>>nombreUser;
+            arbolUsuarios->insertarNodoABB(raiz, nombreUser);
             break;
         case 4:
             mostrarReportes(arbolUsuarios);
@@ -59,6 +58,7 @@ int main()
 }
 void mostrarReportes(ArbolBusqueda *arbolUsuarios)
 {
+            system("cls");
     string todoArbolito="";
     int lectura=0;
     do
@@ -70,10 +70,21 @@ void mostrarReportes(ArbolBusqueda *arbolUsuarios)
         cout<<"5. Recorrido inorden"<<endl;
         cout<<"6. Recorrido postorden"<<endl;
         cout<<"7. "<<endl;
+        cout<<"8. "<<endl;
+        cout<<"9. "<<endl;
+        cout<<"10. "<<endl;
+        cout<<"11. Salir"<<endl;
         cin>>lectura;
         switch(lectura)
         {
         case 1:
+            DiccionarioPalabras->imprimirLista();
+            todoArbolito="digraph diccionario{ \n "+DiccionarioPalabras->getCuerpo()+"\n"+DiccionarioPalabras->getEnlaces()+"}";
+            graficarReportes(todoArbolito,"Diccionario");
+            cout<<todoArbolito<<endl;
+            DiccionarioPalabras->setCuerpo("");
+            DiccionarioPalabras->setEnlaces("");
+            todoArbolito="";
             //lista de palabras en diccionario
             break;
         case 2:
@@ -120,7 +131,7 @@ void mostrarReportes(ArbolBusqueda *arbolUsuarios)
             //lista simple enlazada ordenada del historial de puntajes por jugador, recibe un parametro el cual es el nombre del usuario
             break;
         }
-    }while(lectura!=19);
+    }while(lectura!=11);
 }
 
 void leerJSON()
@@ -130,7 +141,35 @@ void leerJSON()
     string nombreArchivo="";
     cout<<"Ingrese el nombre del archivo"<<endl;
     cin>>nombreArchivo;
-    cout<<"el archivos es: "<<nombreArchivo<<endl;
+    ifstream archivo(nombreArchivo);
+    Json::Reader leer;
+    Json::Value valor;
+    bool parseSuccess= leer.parse(archivo,valor,false);
+    if(parseSuccess)
+    {
+        const Json::Value dimension= valor["dimension"];
+        DimensionTablero=dimension.asInt();
+        const Json::Value casillasDobles= valor["casillas"]["dobles"];
+        cout<<"Dobles"<<endl;
+        for(int i=0; i<casillasDobles.size(); i++){
+            cout<<"X: " <<casillasDobles[i]["x"].asString() <<endl;
+            cout<<"Y: "<<casillasDobles[i]["y"].asString() <<endl;
+        }
+        const Json::Value casillasTriples= valor["casillas"]["triples"];
+        cout<<"Triples"<<endl;
+        for(int i=0; i<casillasTriples.size(); i++){
+            cout<<"X: " <<casillasTriples[i]["x"].asString() <<endl;
+            cout<<"Y: "<<casillasTriples[i]["y"].asString() <<endl;
+        }
+        const Json::Value diccionario= valor["diccionario"];
+        cout<<"Diccionario"<<endl;
+        for(int i=0; i<diccionario.size();i++)
+        {
+            string palabrita=diccionario[i]["palabra"].asString();
+          //  cout<<diccionario[i]["palabra"].asString()<<endl;
+            DiccionarioPalabras->agregar_fin(palabrita);
+        }
+    }
 }
 
 void graficarReportes(string archivo,string nombre)

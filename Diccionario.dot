@@ -1,0 +1,48 @@
+digraph diccionario{ 
+ hola[shape= record label="hola"];
+mundo[shape= record label="mundo"];
+proyecto[shape= record label="proyecto"];
+diccionario[shape= record label="diccionario"];
+Byly[shape= record label="Byly"];
+palabra[shape= record label="palabra"];
+Casa[shape= record label="Casa"];
+Cuestionario[shape= record label="Cuestionario"];
+Estudio[shape= record label="Estudio"];
+Camino[shape= record label="Camino"];
+Coronavirus[shape= record label="Coronavirus"];
+Penademaia[shape= record label="Penademaia"];
+Macadamia[shape= record label="Macadamia"];
+Venezual[shape= record label="Venezual"];
+Zapato[shape= record label="Zapato"];
+
+hola->Zapato
+hola->mundo
+mundo->hola
+mundo->proyecto
+proyecto->mundo
+proyecto->diccionario
+diccionario->proyecto
+diccionario->Byly
+Byly->diccionario
+Byly->palabra
+palabra->Byly
+palabra->Casa
+Casa->palabra
+Casa->Cuestionario
+Cuestionario->Casa
+Cuestionario->Estudio
+Estudio->Cuestionario
+Estudio->Camino
+Camino->Estudio
+Camino->Coronavirus
+Coronavirus->Camino
+Coronavirus->Penademaia
+Penademaia->Coronavirus
+Penademaia->Macadamia
+Macadamia->Penademaia
+Macadamia->Venezual
+Venezual->Macadamia
+Venezual->Zapato
+Zapato->Venezual
+Zapato->hola
+}

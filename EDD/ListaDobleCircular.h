@@ -36,7 +36,21 @@ private:
     Nodo *anterior;
     };
 public:
-
+    string getEnlaces(){
+        return enlaces;
+    }
+    string getCuerpo()
+    {
+        return cuerpo;
+    }
+    void setEnlaces(string enlaces)
+    {
+        this->enlaces=enlaces;
+    }
+    void setCuerpo(string cuerpo)
+    {
+        this->cuerpo=cuerpo;
+    }
     ListaDobleCircular<T>()
     {
      inicio=fin=0;
@@ -48,28 +62,31 @@ public:
     void agregar_fin(T dato);
     void agregar_entre(T dato,int index);
     T obtener_at(int index);
+    void imprimirLista();
     int size;
 private:
     bool estaVacia(){return size==0;}
     Nodo *inicio;
     Nodo *fin;
+    string cuerpo="";
+    string enlaces="";
 };
 
 template<class T>
 T ListaDobleCircular<T>::obtener_at(int index)
 {
+        Nodo *iterador = this->inicio;
      if(index >= 0 && index < size)
     {
-        Nodo *iterador = this->inicio;
         int x = 0;
         do
         {
             if(index == x){return iterador->getDato();}
             iterador = iterador->getSiguiente();
             x++;
-        }while(iterador==fin);
+        }while(iterador!=fin);
     }
-    return 0;
+    return iterador->getDato();
 }
 
 template<class T>
@@ -174,6 +191,22 @@ void ListaDobleCircular<T>::eliminar(int index)
         actual->setAnterior(0);
         this->size--;
         }
+    }
+}
+
+template<class T>
+void ListaDobleCircular<T>::imprimirLista()
+{
+    int x=0;
+    Nodo *aux= this->inicio;
+    if(!estaVacia()){
+    while(x!=size)
+    {
+        cuerpo+=aux->getDato()+"[shape= record label=\""+aux->getDato()+"\"];\n";
+        enlaces+= aux->getDato()+"->"+aux->getAnterior()->getDato()+"\n"+aux->getDato()+"->"+aux->getSiguiente()->getDato()+"\n";
+        x++;
+        aux=aux->getSiguiente();
+    }
     }
 }
 

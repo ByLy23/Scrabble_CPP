@@ -1,16 +1,8 @@
 digraph graficaArbolito{ 
  linkdir=LR 
-Original[shape= circle label="Original"];
-Abedul[shape= circle label="Abedul"];
-Abedul[shape= circle label="Abedul"];
-Original[shape= circle label="Original"];
-Quetzal[shape= circle label="Quetzal"];
-Quetzal[shape= circle label="Quetzal"];
+ByLy[shape= circle label="ByLy"];
+Juanito[shape= circle label="Juanito"];
 
-Original->Abedul
-Abedul->Aa
-Abedul->Beto
-Original->Quetzal
-Quetzal->PApa
-Quetzal->Raro
+ByLy->Juanito
+Juanito->Escarcha
 }

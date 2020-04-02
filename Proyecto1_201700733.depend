@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1585811940 source:a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\main.cpp
+1585860396 source:a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\main.cpp
 	<iostream>
 	"json/json.h"
 	<fstream>
@@ -138,7 +138,7 @@
 	"Coordenada.h"
 	<iostream>
 
-1585509071 a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\edd\listadoblecircular.h
+1585860142 a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\edd\listadoblecircular.h
 
 1585786853 source:a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\usuario.cpp
 	"Usuario.h"
@@ -147,7 +147,7 @@
 1585786895 a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\usuario.h
 	<iostream>
 
-1585812550 a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\edd\arbolbinbusqueda.h
+1585812846 a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\edd\arbolbinbusqueda.h
 	<iostream>
 
 1585809015 source:a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\arbolbusqueda.cpp

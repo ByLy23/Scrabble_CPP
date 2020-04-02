@@ -13,7 +13,7 @@
 			{
 				"x":10,
 				"y":15
-			},
+			}
 		],
 		"triples":[
 			{
@@ -27,8 +27,8 @@
 			{
 				"x":0,
 				"y":15
-			},
-		],
+			}
+		]
 	},
 	"diccionario":[
 		{
@@ -42,6 +42,39 @@
 		},
 		{
 			"palabra":"diccionario"
+		},
+		{
+			"palabra":"Byly"
+		},
+		{
+			"palabra":"palabra"
+		},
+		{
+			"palabra":"Casa"
+		},
+		{
+			"palabra":"Cuestionario"
+		},
+		{
+			"palabra":"Estudio"
+		},
+		{
+			"palabra":"Camino"
+		},
+		{
+			"palabra":"Coronavirus"
+		},
+		{
+			"palabra":"Penademaia"
+		},
+		{
+			"palabra":"Macadamia"
+		},
+		{
+			"palabra":"Venezual"
+		},
+		{
+			"palabra":"Zapato"
 		}
 	]
 }
