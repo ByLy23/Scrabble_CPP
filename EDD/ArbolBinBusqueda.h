@@ -87,16 +87,16 @@ private:
         if(arbol!=0)
         {
             cuerpo+=arbol->getNombre()+"|";
-            preorden(arbol->getIzquierdo());
             preorden(arbol->getDerecho());
+            preorden(arbol->getIzquierdo());
         }
     }
     void postOrden(NodoABB *arbol)
     {
         if(arbol!=0)
         {
-            postOrden(arbol->getIzquierdo());
             postOrden(arbol->getDerecho());
+            postOrden(arbol->getIzquierdo());
             cuerpo+=arbol->getNombre()+"|";
         }
     }
@@ -114,12 +114,12 @@ private:
                 {
                     cout<<"Nombre Repetido"<<endl;
                 }
-                else if(nombre.compare(nombreComparar)>0)
+                else if(nombre.compare(nombreComparar)<0)
                 {
-                    insertarNodoABB(arbol->izquierdo,nombre);
+                    insertarNodoABB(arbol->derecho,nombre);
                 }
                 else{
-                    insertarNodoABB(arbol->derecho,nombre);
+                    insertarNodoABB(arbol->izquierdo,nombre);
                 }
         }
     }

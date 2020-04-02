@@ -1,4 +1,4 @@
 digraph graficaPreorden{ 
  linkdir=LR 
- arreglo[shape= record label= "{|original|quetza|raro|papa|abedul|beto|aa|}"];
+ arreglo[shape= record label= "{|Original|Abedul|Aa|Beto|Quetzal|PApa|Raro|}"];
 }
