@@ -1,12 +1,18 @@
 digraph graficaArbolito{ 
  linkdir=LR 
-Lili[shape= circle label="Lili"];
-Byly[shape= circle label="Byly"];
-Byly[shape= circle label="Byly"];
-Lili[shape= circle label="Lili"];
+Karol[shape= circle label="Karol"];
+Carol[shape= circle label="Carol"];
+Alfi[shape= circle label="Alfi"];
+Karol[shape= circle label="Karol"];
+Quisque[shape= circle label="Quisque"];
+Quisque[shape= circle label="Quisque"];
+Vaudilio[shape= circle label="Vaudilio"];
 
-Lili->Byly
-Byly->Alfi
-Byly->Juanito
-Lili->Pgre
+Karol->Carol
+Carol->Alfi
+Alfi->Byly
+Karol->Quisque
+Quisque->Lili
+Quisque->Vaudilio
+Vaudilio->xX_pussyDestroyer_Xx
 }

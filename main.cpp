@@ -12,7 +12,7 @@
 #include "EDD/ListaDobleCircular.h"
 #include "EDD/ListaSimple.h"
 #include <windows.h>
-#include "Coordenada.h"
+//#include "Coordenada.h"
 #include "Palabra.h"
 using namespace std;
 
@@ -23,12 +23,17 @@ void mostrarReportes(ArbolBusqueda*);
 void imprimirCola();
 void agregarCola();
 void asignarFichas(bool,bool);
+void iniciarJuego();
 void imprimirFichas(ListaDoble<Palabra*> *lista);
 bool verificarUsuario(string);
     string cuerpoCola="";
     string enlacesCola="";
     string cuerpoLista="";
     string enlaceLista="";
+    static int punteojug1=0;
+    static int punteojug2=0;
+    string usuario1="";
+    string usuario2="";
 void hacerCiclo(string, int, int);
 NodoABB *raiz;
     static int DimensionTablero=0;
@@ -46,14 +51,13 @@ int main()
     bool user2=false;
     raiz=new NodoABB();
     setlocale(LC_CTYPE, "Spanish");
-    string usuario1="";
-    string usuario2="";
     //Aca van a ir todas las variables necesarias
     int contadorMenu=0;
     string nombreUser="";
 
     //Aca va a ir el menu
     do{
+            int random;
         //system("cls");
         cout<<"1. Iniciar Juego"<<endl;
         cout<<"2. Leer archivo"<<endl;
@@ -63,14 +67,18 @@ int main()
         cin>>contadorMenu;
         switch(contadorMenu)
         {
+        case 99:
+            srand(time(0));
+            random= rand() % 2;
+            cout<<random<<endl;
+            break;
         case 1:
-            //inicioJuego();
             agregarCola();
             cout<<"Nombre del usuario 1:"<<endl;
             cin>>usuario1;
             if(verificarUsuario(usuario1))
             {
-                cout<<"Continuar Juego"<<endl;
+               // cout<<"Continuar Juego"<<endl;
                 user1=true;
                 arbolUsuarios->bandera=false;
             }
@@ -78,16 +86,20 @@ int main()
                 cout<<"Usuario no registrado"<<endl;
             }
             cout<<"Nombre del usuario 2:"<<endl;
-            cin>>usuario2;if(verificarUsuario(usuario2))
+            cin>>usuario2;
+            if(verificarUsuario(usuario2))
             {
-                cout<<"Continuar Juego"<<endl;
+                //cout<<"Continuar Juego"<<endl;
                 user2=true;
                 arbolUsuarios->bandera=false;
             }
             else{
                 cout<<"Usuario no registrado"<<endl;
             }
+            if(user1 && user2){
             asignarFichas(user1,user2);
+            iniciarJuego();
+            }else{cout<<"No se puede iniciar ya que faltan jugadores"<<endl;}
             break;
         case 2:
             leerJSON();
@@ -111,6 +123,7 @@ void mostrarReportes(ArbolBusqueda *arbolUsuarios)
     int lectura=0;
     do
     {
+        system("cls");
         cout<<"1. Mostrar Palabras diccionario"<<endl;
         cout<<"2. Cola Palabras"<<endl;
         cout<<"3. Mostrar Arbol binario de usuarios"<<endl;
@@ -129,7 +142,6 @@ void mostrarReportes(ArbolBusqueda *arbolUsuarios)
             DiccionarioPalabras->imprimirLista();
             todoArbolito="digraph diccionario{ \n "+DiccionarioPalabras->getCuerpo()+"\n"+DiccionarioPalabras->getEnlaces()+"}";
             graficarReportes(todoArbolito,"Diccionario");
-            cout<<todoArbolito<<endl;
             DiccionarioPalabras->setCuerpo("");
             DiccionarioPalabras->setEnlaces("");
             todoArbolito="";
@@ -140,7 +152,7 @@ void mostrarReportes(ArbolBusqueda *arbolUsuarios)
             todoArbolito="digraph Colapalabras{ \n linkdir=LR \n"+cuerpoCola+"\n"+enlacesCola+"}";
             //cout<<todoArbolito<<endl;
             graficarReportes(todoArbolito,"ColaPalabras");
-            cout<<todoArbolito<<endl;
+
             cuerpoCola="";
             enlacesCola="";
             todoArbolito="";
@@ -229,19 +241,19 @@ void leerJSON()
         const Json::Value dimension= valor["dimension"];
         DimensionTablero=dimension.asInt();
         const Json::Value casillasDobles= valor["casillas"]["dobles"];
-        cout<<"Dobles"<<endl;
+        //cout<<"Dobles"<<endl;
         for(int i=0; i<casillasDobles.size(); i++){
-            cout<<"X: " <<casillasDobles[i]["x"].asString() <<endl;
-            cout<<"Y: "<<casillasDobles[i]["y"].asString() <<endl;
+        //    cout<<"X: " <<casillasDobles[i]["x"].asString() <<endl;
+          //  cout<<"Y: "<<casillasDobles[i]["y"].asString() <<endl;
         }
         const Json::Value casillasTriples= valor["casillas"]["triples"];
-        cout<<"Triples"<<endl;
+        //cout<<"Triples"<<endl;
         for(int i=0; i<casillasTriples.size(); i++){
-            cout<<"X: " <<casillasTriples[i]["x"].asString() <<endl;
-            cout<<"Y: "<<casillasTriples[i]["y"].asString() <<endl;
+          //  cout<<"X: " <<casillasTriples[i]["x"].asString() <<endl;
+            //cout<<"Y: "<<casillasTriples[i]["y"].asString() <<endl;
         }
         const Json::Value diccionario= valor["diccionario"];
-        cout<<"Diccionario"<<endl;
+        //cout<<"Diccionario"<<endl;
         for(int i=0; i<diccionario.size();i++)
         {
             string palabrita=diccionario[i]["palabra"].asString();
@@ -266,8 +278,6 @@ void graficarReportes(string archivo,string nombre)
     system((inicio).c_str());
     system((ejecucion).c_str());
 }
-
-
 void agregarCola()
 {
     hacerCiclo("A",12,1);
@@ -300,7 +310,7 @@ void agregarCola()
     while(AuxPalabra->getTamanio()!=0){
             srand(time(0));
         int random= rand() % AuxPalabra->getTamanio();
-        cout<<random<<endl;
+        //cout<<random<<endl;
 
         colaPalabras->Enqueue(AuxPalabra->remover(random));
     }
@@ -356,4 +366,41 @@ void asignarFichas(bool u1, bool u2)
         fichaJug2->agregar_fin(colaPalabras->Dequeue());
         }
     }
+}
+int turno=0;
+bool contadorTurno(int t)
+{
+    if(t==0)
+    {
+        turno=1;
+        return true;
+    }
+    else{
+        turno=0;
+        return false;
+    }
+}
+void iniciarJuego()
+{
+    srand(time(0));
+    int random= rand() % 2;
+    int finalizarJuego=0;
+    turno=random;
+    int contadorFin=0;
+    do{
+        if(contadorTurno(turno))
+        {
+            cout<<"Turno: "+usuario1<<endl;
+        }
+        else{
+            cout<<"Turno: "+usuario2<<endl;
+        }
+        contadorFin++;
+        int muestra= contadorFin %2;
+        if(muestra==0)
+        {
+            cout<<"Desea Finalizar Juego? \n 50. Si \n cualquier numero sino quiere finalizar"<<endl;
+            cin>>finalizarJuego;
+        }
+    }while((finalizarJuego!=50) && (colaPalabras->getTamanio()!=0));
 }

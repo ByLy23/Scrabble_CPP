@@ -1,10 +1,11 @@
 # depslib dependency file v1.0
-1585900742 source:a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\main.cpp
+1585940681 source:a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\main.cpp
 	<iostream>
 	"json/json.h"
 	<fstream>
 	<stdlib.h>
 	<clocale>
+	"EDD/ListaDoble.h"
 	"EDD/ArbolBinBusqueda.h"
 	"json/jsoncpp.cpp"
 	<time.h>
@@ -12,7 +13,6 @@
 	"EDD/ListaDobleCircular.h"
 	"EDD/ListaSimple.h"
 	<windows.h>
-	"Coordenada.h"
 	"Palabra.h"
 
 1576285465 a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\json\json.h
@@ -136,10 +136,10 @@
 	<sstream>
 	"config.h"
 
-1585770652 a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\coordenada.h
+1585936725 a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\coordenada.h
 	<iostream>
 
-1585770673 source:a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\coordenada.cpp
+1585940091 source:a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\coordenada.cpp
 	"Coordenada.h"
 	<iostream>
 
@@ -152,7 +152,7 @@
 1585786895 a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\usuario.h
 	<iostream>
 
-1585901487 a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\edd\arbolbinbusqueda.h
+1585936535 a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\edd\arbolbinbusqueda.h
 	<iostream>
 
 1585809015 source:a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\arbolbusqueda.cpp
@@ -166,7 +166,9 @@
 1585889425 a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\palabra.h
 	<iostream>
 
-1585897181 a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\edd\cola.h
+1585922850 a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\edd\cola.h
 
 1585879618 a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\edd\listasimple.h
+
+1585509116 a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\edd\listadoble.h
 
