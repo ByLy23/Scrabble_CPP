@@ -380,20 +380,104 @@ bool contadorTurno(int t)
         return false;
     }
 }
+bool verificarDiccionario(string pal)
+{
+    bool bandera=false;
+    for(int i=0; i<DiccionarioPalabras->getSize(); i++)
+    {
+        string palabti=DiccionarioPalabras->obtener_at(i);
+        if(pal.compare(palabti)==0)
+        {
+            bandera=true;
+            break;
+        }
+    }
+    return bandera;
+}
+string fichasJug1="";
+void imprimirFichasJugador1(){
+    for(int i=0; i<fichaJug1->getSize();i++)
+    {
+        int va=fichaJug1->obtener_at(i)->getPunteo();
+        string da= to_string(va);
+        fichasJug1+=fichaJug1->obtener_at(i)->getLetra()+" Punteo: "+da+", ";
+    }
+}
+string fichasJug2="";
+void imprimirFichasJugador2(){
+    for(int i=0; i<fichaJug2->getSize();i++)
+    {
+        int va=fichaJug2->obtener_at(i)->getPunteo();
+        string da= to_string(va);
+        fichasJug2+=fichaJug2->obtener_at(i)->getLetra()+" Punteo: "+da+", ";
+    }
+}
+void turnos(int jug)
+{
+    string palabra="";
+    int fin=0;
+    int x=0;
+    int verHori=0;
+    int y=0;
+    do{
+            cout<<"Ingrese letra: "<<endl;
+            cin>>palabra;
+            cout<<"1. Salir"<<endl;
+            cin>>fin;
+            }while(fin!=1);
+            if(verificarDiccionario(palabra))
+            {
+            system("cls");
+            cout<<"Ingresa X"<<endl;
+            cin>>x;
+            cout<<"Ingresa Y"<<endl;
+            cin>>y;
+            cout<<"1. Ingresar Horizontal"<<endl;
+            cout<<"2. Ingresar Vertical"<<endl;
+            cin>>verHori;
+            switch(verHori)
+            {
+            case 1:
+                break;
+            case 2:
+                break;
+            }
+            }else{
+                cout<<"Palabra no valida"<<endl;
+            }
+
+}
 void iniciarJuego()
 {
     srand(time(0));
     int random= rand() % 2;
     int finalizarJuego=0;
+    int variableTurno=0;
     turno=random;
     int contadorFin=0;
     do{
         if(contadorTurno(turno))
         {
+            do{
             cout<<"Turno: "+usuario1<<endl;
+            imprimirFichasJugador1();
+            cout<<"Palabras disponibles: "<<fichasJug1<<endl;
+            turnos(1);
+            cout<<"Terminar turno con 2"<<endl;
+            cin>>variableTurno;
+            }while(variableTurno!=2);
         }
         else{
+            int variableTurno=0;
+            do{
             cout<<"Turno: "+usuario2<<endl;
+            imprimirFichasJugador2();
+            cout<<"Palabras disponibles: "<<fichasJug2<<endl;
+            turnos(2);
+            cout<<"Terminar turno con 2"<<endl;
+            cin>>variableTurno;
+            }while(variableTurno!=2);
+
         }
         contadorFin++;
         int muestra= contadorFin %2;
