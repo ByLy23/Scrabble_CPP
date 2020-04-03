@@ -43,7 +43,7 @@ public:
      size=0;
     }
     int getSize(){return size;}
-    void eliminar(int index);
+    T eliminar(int index);
     void agregar_inicio(T dato);
     void agregar_fin(T dato);
     void agregar_entre(T dato,int index);
@@ -131,29 +131,33 @@ void ListaDoble<T>::agregar_inicio(T dato)
 }
 
 template<class T>
-void ListaDoble<T>::eliminar(int index)
+T ListaDoble<T>::eliminar(int index)
 {
+    T informacion;
  if(index>=0 && index<=size)
     {
         if(index==0){
+                informacion=this->inicio->getDato();
             this->inicio=this->inicio->getSiguiente();
             this->inicio->getAnterior()->setSiguiente(0);
             this->inicio->setAnterior(0);
             this->size--;
         }
         else if(index==this->size){
+            informacion=this->fin->getDato();
             fin=fin->getAnterior();
             fin->getSiguiente()->setAnterior(0);
             fin->setSiguiente(0);
             this->size--;
         }
         else{
+
         int x=0;
         Nodo *actual=this->inicio;
         Nodo *anterior= 0;
         while(actual!=0)
         {
-            if(x==index){break;}
+            if(x==index){informacion=actual->getDato();break;}
             anterior=actual;
             actual=actual->getSiguiente();
             x++;
@@ -165,5 +169,6 @@ void ListaDoble<T>::eliminar(int index)
         this->size--;
         }
     }
+    return informacion;
 }
 #endif // LISTADOBLE_H_INCLUDED

@@ -1,6 +1,6 @@
 #ifndef CUBODISPERSO_H_INCLUDED
 #define CUBODISPERSO_H_INCLUDED
-#include "ListaSimple.h"
+#include "Palabra.h"
 #include <iostream>
 
 using namespace std;

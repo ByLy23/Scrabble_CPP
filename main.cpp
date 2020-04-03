@@ -11,6 +11,7 @@
 #include "EDD/Cola.h"
 #include "EDD/ListaDobleCircular.h"
 #include "EDD/ListaSimple.h"
+#include <string>
 #include <windows.h>
 //#include "Coordenada.h"
 #include "Palabra.h"
@@ -43,6 +44,8 @@ NodoABB *raiz;
    ListaDoble<Palabra*> *fichaJug1= new ListaDoble<Palabra*>();
    ListaDoble<Palabra*> *fichaJug2= new ListaDoble<Palabra*>();
    Cola<Palabra*> *colaPalabras= new Cola<Palabra*>();
+   Cola<Palabra*> *auxLista= new Cola<Palabra*>();
+   Cola<Palabra*> *auxMatriz= new Cola<Palabra*>();
    ListaSimple<Palabra*> *AuxPalabra= new ListaSimple<Palabra*>();
    ArbolBusqueda *arbolUsuarios= new ArbolBusqueda();
 int main()
@@ -280,33 +283,33 @@ void graficarReportes(string archivo,string nombre)
 }
 void agregarCola()
 {
-    hacerCiclo("A",12,1);
-    hacerCiclo("B",2,3);
-    hacerCiclo("C",4,3);
-    hacerCiclo("D",5,2);
-    hacerCiclo("E",12,1);
-    hacerCiclo("F",1,4);
-    hacerCiclo("G",2,2);
-    hacerCiclo("H",2,4);
-    hacerCiclo("I",6,1);
-    hacerCiclo("J",1,8);
-    hacerCiclo("K",1,1);
-    hacerCiclo("L",4,1);
-    hacerCiclo("M",2,3);
-    hacerCiclo("N",4,1);
-    hacerCiclo("O",9,1);
-    hacerCiclo("P",2,3);
-    hacerCiclo("Q",1,5);
-    hacerCiclo("R",5,1);
-    hacerCiclo("S",6,1);
-    hacerCiclo("T",4,1);
-    hacerCiclo("U",5,1);
-    hacerCiclo("V",1,4);
-    hacerCiclo("Ñ",1,8);
-    hacerCiclo("W",1,1);
-    hacerCiclo("X",1,8);
-    hacerCiclo("Y",1,4);
-    hacerCiclo("Z",1,10);
+    hacerCiclo("a",12,1);
+    hacerCiclo("b",2,3);
+    hacerCiclo("c",4,3);
+    hacerCiclo("d",5,2);
+    hacerCiclo("e",12,1);
+    hacerCiclo("f",1,4);
+    hacerCiclo("g",2,2);
+    hacerCiclo("h",2,4);
+    hacerCiclo("i",6,1);
+    hacerCiclo("j",1,8);
+    hacerCiclo("k",1,1);
+    hacerCiclo("l",4,1);
+    hacerCiclo("m",2,3);
+    hacerCiclo("n",4,1);
+    hacerCiclo("o",9,1);
+    hacerCiclo("p",2,3);
+    hacerCiclo("q",1,5);
+    hacerCiclo("r",5,1);
+    hacerCiclo("s",6,1);
+    hacerCiclo("t",4,1);
+    hacerCiclo("u",5,1);
+    hacerCiclo("v",1,4);
+    hacerCiclo("ñ",1,8);
+    hacerCiclo("w",1,1);
+    hacerCiclo("x",1,8);
+    hacerCiclo("y",1,4);
+    hacerCiclo("z",1,10);
     while(AuxPalabra->getTamanio()!=0){
             srand(time(0));
         int random= rand() % AuxPalabra->getTamanio();
@@ -412,16 +415,50 @@ void imprimirFichasJugador2(){
         fichasJug2+=fichaJug2->obtener_at(i)->getLetra()+" Punteo: "+da+", ";
     }
 }
+bool verificarLetra(string letr,int num)
+{
+    bool bandera=false;
+    if(num==1)
+    {
+        for(int i=0; i<fichaJug1->getSize();i++){
+            if(letr.compare(fichaJug1->obtener_at(i)->getLetra())==0)
+            {
+                bandera=true;
+                auxLista->Enqueue(fichaJug1->eliminar(i));
+            }
+        }
+    }
+    else{
+        for(int i=0; i<fichaJug2->getSize();i++){
+            if(letr.compare(fichaJug2->obtener_at(i)->getLetra())==0)
+            {
+                bandera=true;
+                auxLista->Enqueue(fichaJug2->eliminar(i));
+            }
+        }
+    }
+    return bandera;
+}
 void turnos(int jug)
 {
     string palabra="";
+    string letra="";
     int fin=0;
     int x=0;
     int verHori=0;
     int y=0;
     do{
             cout<<"Ingrese letra: "<<endl;
-            cin>>palabra;
+            cin>>letra;
+            palabra+=letra;
+            if(jug==1){
+            if(verificarLetra(letra,1)){
+            }else{break;}
+            }else{
+            if(verificarLetra(letra,2))
+            {
+            }else{break;}
+            }
             cout<<"1. Salir"<<endl;
             cin>>fin;
             }while(fin!=1);
@@ -435,9 +472,13 @@ void turnos(int jug)
             cout<<"1. Ingresar Horizontal"<<endl;
             cout<<"2. Ingresar Vertical"<<endl;
             cin>>verHori;
+                int larg= x+ palabra.length();
             switch(verHori)
             {
             case 1:
+                if(larg>DimensionTablero && y>DimensionTablero){
+
+                }
                 break;
             case 2:
                 break;
