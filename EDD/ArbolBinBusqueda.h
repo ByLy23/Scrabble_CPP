@@ -100,6 +100,25 @@ private:
             cuerpo+=arbol->getNombre()+"|";
         }
     }
+        bool bandera=false;
+    bool verificaNombre(NodoABB *&arbol, string nombre)
+    {
+         if(arbol!=0){
+                string nombreComparar= arbol->getNombre();
+                if(nombre.compare(nombreComparar)==0)
+                {
+                    bandera=true;
+                }
+                else if(nombre.compare(nombreComparar)<0)
+                {
+                    verificaNombre(arbol->derecho,nombre);
+                }
+                else{
+                    verificaNombre(arbol->izquierdo,nombre);
+                }
+        }
+                return bandera;
+    }
     void insertarNodoABB(NodoABB *&arbol, string nombre)
     {
         if(arbol==0)

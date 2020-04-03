@@ -3,6 +3,7 @@
 //#include "EDD/CuboDisperso.h"
 #include <fstream>
 #include <stdlib.h>
+#include <clocale>
 #include "EDD/ArbolBinBusqueda.h"
 #include "json/jsoncpp.cpp"
 #include <time.h>
@@ -20,6 +21,7 @@ void graficarReportes(string, string);
 void mostrarReportes(ArbolBusqueda*);
 void imprimirCola();
 void agregarCola();
+bool verificarUsuario(string);
     string cuerpoCola="";
     string enlacesCola="";
 void hacerCiclo(string, int, int);
@@ -30,13 +32,17 @@ NodoABB *raiz;
    ListaDobleCircular<string> *DiccionarioPalabras= new ListaDobleCircular<string>();
    Cola<Palabra*> *colaPalabras= new Cola<Palabra*>();
    ListaSimple<Palabra*> *AuxPalabra= new ListaSimple<Palabra*>();
+   ArbolBusqueda *arbolUsuarios= new ArbolBusqueda();
 int main()
 {
+
+    raiz=new NodoABB();
+    setlocale(LC_CTYPE, "Spanish");
+    string usuario1="";
+    string usuario2="";
     //Aca van a ir todas las variables necesarias
     int contadorMenu=0;
     string nombreUser="";
-    raiz=new NodoABB();
-   ArbolBusqueda *arbolUsuarios= new ArbolBusqueda();
 
     //Aca va a ir el menu
     do{
@@ -52,6 +58,25 @@ int main()
         case 1:
             //inicioJuego();
             agregarCola();
+            cout<<"Nombre del usuario 1:"<<endl;
+            cin>>usuario1;
+            if(verificarUsuario(usuario1))
+            {
+                cout<<"Continuar Juego"<<endl;
+                arbolUsuarios->bandera=false;
+            }
+            else{
+                cout<<"Usuario no registrado"<<endl;
+            }
+            cout<<"Nombre del usuario 2:"<<endl;
+            cin>>usuario2;if(verificarUsuario(usuario2))
+            {
+                cout<<"Continuar Juego"<<endl;
+                arbolUsuarios->bandera=false;
+            }
+            else{
+                cout<<"Usuario no registrado"<<endl;
+            }
             break;
         case 2:
             leerJSON();
@@ -191,6 +216,10 @@ void leerJSON()
         }
     }
 }
+bool verificarUsuario(string user)
+{
+    return arbolUsuarios->verificaNombre(raiz, user);
+}
 
 void graficarReportes(string archivo,string nombre)
 {
@@ -247,7 +276,9 @@ void imprimirCola()
     for(int i=0; i<colaPalabras->getTamanio();i++)
     {
         int j=i+1;
-        cuerpoCola+="nodo"+to_string(i)+"[shape= record label=\""+colaPalabras->get_element_at(i)->getLetra()+"\"];\n";
+        int dato=colaPalabras->get_element_at(i)->getPunteo();
+        string dato1=to_string(dato);
+        cuerpoCola+="nodo"+to_string(i)+"[shape= record label=\""+colaPalabras->get_element_at(i)->getLetra()+"\n Punteo: "+dato1+"\"];\n";
         enlacesCola+="nodo"+to_string(i)+" -> nodo"+ to_string(j)+"\n";
     }
 }

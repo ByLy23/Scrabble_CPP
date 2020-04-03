@@ -1,9 +1,10 @@
 # depslib dependency file v1.0
-1585897791 source:a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\main.cpp
+1585900742 source:a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\main.cpp
 	<iostream>
 	"json/json.h"
 	<fstream>
 	<stdlib.h>
+	<clocale>
 	"EDD/ArbolBinBusqueda.h"
 	"json/jsoncpp.cpp"
 	<time.h>
@@ -151,7 +152,7 @@
 1585786895 a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\usuario.h
 	<iostream>
 
-1585812846 a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\edd\arbolbinbusqueda.h
+1585901487 a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\edd\arbolbinbusqueda.h
 	<iostream>
 
 1585809015 source:a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\arbolbusqueda.cpp
