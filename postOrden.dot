@@ -1,4 +1,4 @@
 digraph graficaPostrden{ 
  linkdir=LR 
- arreglo[shape= record label= "{Aa|Beto|Abedul|PApa|Raro|Quetzal|Original||}"];
+ arreglo[shape= record label= "{Pedro|Juan|Byron||}"];
 }

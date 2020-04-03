@@ -1,8 +1,8 @@
 digraph graficaArbolito{ 
  linkdir=LR 
-ByLy[shape= circle label="ByLy"];
-Juanito[shape= circle label="Juanito"];
+Byron[shape= circle label="Byron"];
+Juan[shape= circle label="Juan"];
 
-ByLy->Juanito
-Juanito->Escarcha
+Byron->Juan
+Juan->Pedro
 }

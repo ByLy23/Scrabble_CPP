@@ -42,7 +42,7 @@ class ListaSimple
         }
         void insertar_final(T dato);
         void insertar(T dato,int index);
-        void remover(int index);
+        T remover(int index);
         void buscar(T dato);
         T get_element_at(int index);
 };
@@ -121,25 +121,36 @@ void ListaSimple<T>::insertar(T dato,int index)
 }
 
 template<class T>
-void ListaSimple<T>::remover(int index)
+T ListaSimple<T>::remover(int index)
 {
+    T informacion;
     if(index==0)
     {
-      inicio=inicio->getSiguiente();
-      tamanio--;
+        informacion=this->inicio->getDato();
+        inicio=inicio->getSiguiente();
+        this->tamanio--;
     }
-    else if(index==tamanio)
+    else
     {
-
+        Nodo *aux= this->inicio;
+        Nodo *anterior=0;
+        int x=0;
+        while(aux!=0)
+        {
+            if(x==index)
+            {
+                informacion=aux->getDato();
+                break;
+            }
+            anterior=aux;
+            aux=aux->getSiguiente();
+            x++;
+        }
+        anterior->setSiguiente(aux->getSiguiente());
+        aux->setSiguiente(0);
+        this->tamanio--;
     }
-    Nodo *aux= inicio;
-    int x=0;
-    while(aux!=0)
-    {
-        if(x==index){break;}
-        aux=aux->getSiguiente();
-    }
-
+    return informacion;
 }
 
 

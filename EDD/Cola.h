@@ -29,8 +29,25 @@ class Cola
     Nodo *inicio;
     Nodo *fin;
     int tamanio;
+    string cuerpo="";
+    string enlaces="";
     bool estaVacia();
     public:
+         string getEnlaces(){
+        return enlaces;
+    }
+    string getCuerpo()
+    {
+        return cuerpo;
+    }
+    void setEnlaces(string enlaces)
+    {
+        this->enlaces=enlaces;
+    }
+    void setCuerpo(string cuerpo)
+    {
+        this->cuerpo=cuerpo;
+    }
         Cola<T>()
         {
             inicio=0;
@@ -42,6 +59,7 @@ class Cola
         }
         void Enqueue(T dato);
         T Dequeue();
+        T imprimir(int);
 };
 
 template<class T>
@@ -82,5 +100,21 @@ T Cola<T>::Dequeue()
         tamanio--;
     }
     return info;
+}
+template<class T>
+T Cola<T>::imprimir(int index)
+{
+    if(index>=0 && index<= tamanio)
+    {
+        int x = 0;
+     Nodo *iterador = this->inicio;
+        while(iterador!=0)
+        {
+            if(x == index){return iterador->getDato();}
+            iterador = iterador->getSiguiente();
+            x++;
+        }
+    }
+    return 0;
 }
 #endif // COLA_H_INCLUDED

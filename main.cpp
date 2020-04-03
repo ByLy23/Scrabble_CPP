@@ -5,20 +5,30 @@
 #include <stdlib.h>
 #include "EDD/ArbolBinBusqueda.h"
 #include "json/jsoncpp.cpp"
+#include "EDD/Cola.h"
 #include "EDD/ListaDobleCircular.h"
+#include "EDD/ListaSimple.h"
 #include <windows.h>
 #include "Coordenada.h"
+#include "Palabra.h"
 using namespace std;
 
 //Aca van a ir todas las declaraciones importantes
 void leerJSON();
 void graficarReportes(string, string);
 void mostrarReportes(ArbolBusqueda*);
+void imprimirCola();
+void agregarCola();
+    string cuerpoCola="";
+    string enlacesCola="";
+void hacerCiclo(string, int, int);
 NodoABB *raiz;
     static int DimensionTablero=0;
     int contadorAux=0;
    // Aca van a ir las listas que se utilizaran en todo el programa
    ListaDobleCircular<string> *DiccionarioPalabras= new ListaDobleCircular<string>();
+   Cola<Palabra*> *colaPalabras= new Cola<Palabra*>();
+   ListaSimple<Palabra*> *AuxPalabra= new ListaSimple<Palabra*>();
 int main()
 {
     //Aca van a ir todas las variables necesarias
@@ -40,6 +50,7 @@ int main()
         {
         case 1:
             //inicioJuego();
+            agregarCola();
             break;
         case 2:
             leerJSON();
@@ -63,8 +74,8 @@ void mostrarReportes(ArbolBusqueda *arbolUsuarios)
     int lectura=0;
     do
     {
-        cout<<"1. "<<endl;
-        cout<<"2. "<<endl;
+        cout<<"1. Mostrar Palabras diccionario"<<endl;
+        cout<<"2. Cola Palabras"<<endl;
         cout<<"3. Mostrar Arbol binario de usuarios"<<endl;
         cout<<"4. Recorrido preorden"<<endl;
         cout<<"5. Recorrido inorden"<<endl;
@@ -88,6 +99,14 @@ void mostrarReportes(ArbolBusqueda *arbolUsuarios)
             //lista de palabras en diccionario
             break;
         case 2:
+            //colaPalabras->imprimir();
+            //cout<<colaPalabras->imprimir(5)->getLetra()<<endl;
+           /* todoArbolito="digraph Colapalabras{ \n linkdir=LR \n"+cuerpoCola+"\n"+enlacesCola+"}";
+            //cout<<todoArbolito<<endl;
+            graficarReportes(todoArbolito,"ColaPalabras");
+            cuerpoCola="";
+            enlacesCola="";
+            todoArbolito="";*/
             //cola de letras en forma desordenada
             break;
         case 3:
@@ -182,4 +201,48 @@ void graficarReportes(string archivo,string nombre)
     string ejecucion= "start "+nombre+".png";
     system((inicio).c_str());
     system((ejecucion).c_str());
+}
+
+
+void agregarCola()
+{
+    hacerCiclo("A",12,1);
+    hacerCiclo("B",2,3);
+    hacerCiclo("C",4,3);
+    hacerCiclo("D",5,2);
+    hacerCiclo("E",12,1);
+    hacerCiclo("F",1,4);
+    hacerCiclo("G",2,2);
+    hacerCiclo("H",2,4);
+    hacerCiclo("I",6,1);
+    hacerCiclo("J",1,8);
+    hacerCiclo("K",1,1);
+    hacerCiclo("L",4,1);
+    hacerCiclo("M",2,3);
+    hacerCiclo("N",4,1);
+    hacerCiclo("O",9,1);
+    hacerCiclo("P",2,3);
+    hacerCiclo("Q",1,5);
+    hacerCiclo("R",5,1);
+    hacerCiclo("S",6,1);
+    hacerCiclo("T",4,1);
+    hacerCiclo("U",5,1);
+    hacerCiclo("V",1,4);
+    hacerCiclo("Ñ",1,8);
+    hacerCiclo("W",1,1);
+    hacerCiclo("X",1,8);
+    hacerCiclo("Y",1,4);
+    hacerCiclo("Z",1,10);
+    for(int i=0; i<AuxPalabra->getTamanio(); i++)
+    {
+        int random= rand() % AuxPalabra->getTamanio();
+        colaPalabras->Enqueue(new Palabra("a",12));
+    }
+}
+void hacerCiclo(string letra, int cantidad, int punteo)
+{
+    for(int i=0; i<cantidad;i++)
+    {
+        AuxPalabra->insertar_final(new Palabra(letra,punteo));
+    }
 }
