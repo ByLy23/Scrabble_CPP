@@ -99,8 +99,7 @@ void mostrarReportes(ArbolBusqueda *arbolUsuarios)
             //lista de palabras en diccionario
             break;
         case 2:
-            //colaPalabras->imprimir();
-            //cout<<colaPalabras->imprimir(5)->getLetra()<<endl;
+            imprimirCola();
            /* todoArbolito="digraph Colapalabras{ \n linkdir=LR \n"+cuerpoCola+"\n"+enlacesCola+"}";
             //cout<<todoArbolito<<endl;
             graficarReportes(todoArbolito,"ColaPalabras");
@@ -233,10 +232,18 @@ void agregarCola()
     hacerCiclo("X",1,8);
     hacerCiclo("Y",1,4);
     hacerCiclo("Z",1,10);
-    for(int i=0; i<AuxPalabra->getTamanio(); i++)
-    {
+    while(AuxPalabra->getTamanio()!=0){
         int random= rand() % AuxPalabra->getTamanio();
-        colaPalabras->Enqueue(new Palabra("a",12));
+        Palabra *pala= AuxPalabra->remover(random);
+        colaPalabras->Enqueue(pala);
+    }
+}
+void imprimirCola()
+{
+    for(int i=0; i<colaPalabras->getTamanio();i++)
+    {
+        cout<<colaPalabras->get_element_at(i)->getLetra()<<endl;
+
     }
 }
 void hacerCiclo(string letra, int cantidad, int punteo)

@@ -9,9 +9,9 @@ class Cola
         Nodo *siguiente;
         T dato;
     public:
-         Nodo(T dato){
+         Nodo(T x){
         siguiente=0;
-        dato=0;
+        dato=x;
         }
         void setSiguiente(Nodo *n)
         {
@@ -29,6 +29,7 @@ class Cola
     Nodo *inicio;
     Nodo *fin;
     int tamanio;
+
     string cuerpo="";
     string enlaces="";
     bool estaVacia();
@@ -59,7 +60,7 @@ class Cola
         }
         void Enqueue(T dato);
         T Dequeue();
-        T imprimir(int);
+        T get_element_at(int index);
 };
 
 template<class T>
@@ -86,10 +87,26 @@ void Cola<T>::Enqueue(T dato)
 }
 
 template<class T>
+T Cola<T>::get_element_at(int index)
+{
+    if(index>=0 && index<= tamanio)
+    { Nodo *iterador = this->inicio;
+        int x = 0;
+        while(iterador!=0)
+        {
+            if(index == x){return iterador->getDato();}
+            iterador = iterador->getSiguiente();
+            x++;
+        }
+    }
+    return 0;
+}
+
+template<class T>
 T Cola<T>::Dequeue()
 {
     T info= this->inicio->getDato();
-    if(inicio=fin)
+    if(inicio==fin)
     {
         inicio=fin=0;
         tamanio--;
@@ -100,21 +117,5 @@ T Cola<T>::Dequeue()
         tamanio--;
     }
     return info;
-}
-template<class T>
-T Cola<T>::imprimir(int index)
-{
-    if(index>=0 && index<= tamanio)
-    {
-        int x = 0;
-     Nodo *iterador = this->inicio;
-        while(iterador!=0)
-        {
-            if(x == index){return iterador->getDato();}
-            iterador = iterador->getSiguiente();
-            x++;
-        }
-    }
-    return 0;
 }
 #endif // COLA_H_INCLUDED

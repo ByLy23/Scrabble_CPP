@@ -1,8 +1,12 @@
 digraph graficaArbolito{ 
  linkdir=LR 
-Byron[shape= circle label="Byron"];
-Juan[shape= circle label="Juan"];
+Lili[shape= circle label="Lili"];
+Byly[shape= circle label="Byly"];
+Byly[shape= circle label="Byly"];
+Lili[shape= circle label="Lili"];
 
-Byron->Juan
-Juan->Pedro
+Lili->Byly
+Byly->Alfi
+Byly->Juanito
+Lili->Pgre
 }

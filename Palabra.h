@@ -9,23 +9,11 @@ class Palabra
     public:
         Palabra();
         Palabra(string, int);
-        string getLetra(){
-            return letra;
-        }
-        int getPunteo()
-        {
-            return punteo;
-        }
-        void setPunteo(int puntos)
-        {
-            this->punteo=puntos;
-        }
-        void setLetra(string letra)
-        {
-            this->letra=letra;
-        }
         virtual ~Palabra();
-
+        void setLetra(string);
+        void setPunteo(int);
+        string getLetra();
+        int getPunteo();
     protected:
 
     private:
