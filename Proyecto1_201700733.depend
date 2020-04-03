@@ -1,11 +1,12 @@
 # depslib dependency file v1.0
-1585891171 source:a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\main.cpp
+1585897791 source:a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\main.cpp
 	<iostream>
 	"json/json.h"
 	<fstream>
 	<stdlib.h>
 	"EDD/ArbolBinBusqueda.h"
 	"json/jsoncpp.cpp"
+	<time.h>
 	"EDD/Cola.h"
 	"EDD/ListaDobleCircular.h"
 	"EDD/ListaSimple.h"
@@ -164,7 +165,7 @@
 1585889425 a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\palabra.h
 	<iostream>
 
-1585891190 a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\edd\cola.h
+1585897181 a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\edd\cola.h
 
 1585879618 a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\edd\listasimple.h
 

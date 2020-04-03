@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include "EDD/ArbolBinBusqueda.h"
 #include "json/jsoncpp.cpp"
+#include <time.h>
 #include "EDD/Cola.h"
 #include "EDD/ListaDobleCircular.h"
 #include "EDD/ListaSimple.h"
@@ -100,12 +101,13 @@ void mostrarReportes(ArbolBusqueda *arbolUsuarios)
             break;
         case 2:
             imprimirCola();
-           /* todoArbolito="digraph Colapalabras{ \n linkdir=LR \n"+cuerpoCola+"\n"+enlacesCola+"}";
+            todoArbolito="digraph Colapalabras{ \n linkdir=LR \n"+cuerpoCola+"\n"+enlacesCola+"}";
             //cout<<todoArbolito<<endl;
             graficarReportes(todoArbolito,"ColaPalabras");
+            cout<<todoArbolito<<endl;
             cuerpoCola="";
             enlacesCola="";
-            todoArbolito="";*/
+            todoArbolito="";
             //cola de letras en forma desordenada
             break;
         case 3:
@@ -233,17 +235,20 @@ void agregarCola()
     hacerCiclo("Y",1,4);
     hacerCiclo("Z",1,10);
     while(AuxPalabra->getTamanio()!=0){
+            srand(time(0));
         int random= rand() % AuxPalabra->getTamanio();
-        Palabra *pala= AuxPalabra->remover(random);
-        colaPalabras->Enqueue(pala);
+        cout<<random<<endl;
+
+        colaPalabras->Enqueue(AuxPalabra->remover(random));
     }
 }
 void imprimirCola()
 {
     for(int i=0; i<colaPalabras->getTamanio();i++)
     {
-        cout<<colaPalabras->get_element_at(i)->getLetra()<<endl;
-
+        int j=i+1;
+        cuerpoCola+="nodo"+to_string(i)+"[shape= record label=\""+colaPalabras->get_element_at(i)->getLetra()+"\"];\n";
+        enlacesCola+="nodo"+to_string(i)+" -> nodo"+ to_string(j)+"\n";
     }
 }
 void hacerCiclo(string letra, int cantidad, int punteo)

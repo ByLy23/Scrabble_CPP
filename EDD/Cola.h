@@ -53,6 +53,7 @@ class Cola
         {
             inicio=0;
             tamanio=0;
+            fin=0;
         }
         int getTamanio()
         {
@@ -89,17 +90,18 @@ void Cola<T>::Enqueue(T dato)
 template<class T>
 T Cola<T>::get_element_at(int index)
 {
+    Nodo *iterador = this->inicio;
     if(index>=0 && index<= tamanio)
-    { Nodo *iterador = this->inicio;
+    {
         int x = 0;
         while(iterador!=0)
         {
-            if(index == x){return iterador->getDato();}
+            if(x == index){return iterador->getDato();}
             iterador = iterador->getSiguiente();
             x++;
         }
     }
-    return 0;
+    return iterador->getDato();
 }
 
 template<class T>
