@@ -4,6 +4,7 @@
 #include <fstream>
 #include <stdlib.h>
 #include <clocale>
+#include "EDD/ListaDoble.h"
 #include "EDD/ArbolBinBusqueda.h"
 #include "json/jsoncpp.cpp"
 #include <time.h>
@@ -21,21 +22,28 @@ void graficarReportes(string, string);
 void mostrarReportes(ArbolBusqueda*);
 void imprimirCola();
 void agregarCola();
+void asignarFichas(bool,bool);
+void imprimirFichas(ListaDoble<Palabra*> *lista);
 bool verificarUsuario(string);
     string cuerpoCola="";
     string enlacesCola="";
+    string cuerpoLista="";
+    string enlaceLista="";
 void hacerCiclo(string, int, int);
 NodoABB *raiz;
     static int DimensionTablero=0;
     int contadorAux=0;
    // Aca van a ir las listas que se utilizaran en todo el programa
    ListaDobleCircular<string> *DiccionarioPalabras= new ListaDobleCircular<string>();
+   ListaDoble<Palabra*> *fichaJug1= new ListaDoble<Palabra*>();
+   ListaDoble<Palabra*> *fichaJug2= new ListaDoble<Palabra*>();
    Cola<Palabra*> *colaPalabras= new Cola<Palabra*>();
    ListaSimple<Palabra*> *AuxPalabra= new ListaSimple<Palabra*>();
    ArbolBusqueda *arbolUsuarios= new ArbolBusqueda();
 int main()
 {
-
+    bool user1=false;
+    bool user2=false;
     raiz=new NodoABB();
     setlocale(LC_CTYPE, "Spanish");
     string usuario1="";
@@ -63,6 +71,7 @@ int main()
             if(verificarUsuario(usuario1))
             {
                 cout<<"Continuar Juego"<<endl;
+                user1=true;
                 arbolUsuarios->bandera=false;
             }
             else{
@@ -72,11 +81,13 @@ int main()
             cin>>usuario2;if(verificarUsuario(usuario2))
             {
                 cout<<"Continuar Juego"<<endl;
+                user2=true;
                 arbolUsuarios->bandera=false;
             }
             else{
                 cout<<"Usuario no registrado"<<endl;
             }
+            asignarFichas(user1,user2);
             break;
         case 2:
             leerJSON();
@@ -109,7 +120,7 @@ void mostrarReportes(ArbolBusqueda *arbolUsuarios)
         cout<<"7. "<<endl;
         cout<<"8. "<<endl;
         cout<<"9. "<<endl;
-        cout<<"10. "<<endl;
+        cout<<"10. Lista doblemente enlazada de fichas de jugadores"<<endl;
         cout<<"11. Salir"<<endl;
         cin>>lectura;
         switch(lectura)
@@ -174,6 +185,29 @@ void mostrarReportes(ArbolBusqueda *arbolUsuarios)
             break;
         case 7:
             //lista simple enlazada ordenada del historial de puntajes por jugador, recibe un parametro el cual es el nombre del usuario
+            break;
+            case 8:
+                //lista simple que representa el escoreboard
+            break;
+            case 9:
+            //matriz dispersa
+            break;
+            case 10:
+                imprimirFichas(fichaJug1);
+                todoArbolito="digraph FichasJug1{ \n linkdir=LR \n"+cuerpoLista+"\n"+enlaceLista+"}";
+            //cout<<todoArbolito<<endl;
+            graficarReportes(todoArbolito,"FichasJug1");
+            cuerpoLista="";
+            enlaceLista="";
+            todoArbolito="";
+            imprimirFichas(fichaJug2);
+                todoArbolito="digraph FichasJug2{ \n linkdir=LR \n"+cuerpoLista+"\n"+enlaceLista+"}";
+            //cout<<todoArbolito<<endl;
+            graficarReportes(todoArbolito,"FichasJug2");
+            cuerpoLista="";
+            enlaceLista="";
+            todoArbolito="";
+            //listas de fichas
             break;
         }
     }while(lectura!=11);
@@ -282,10 +316,44 @@ void imprimirCola()
         enlacesCola+="nodo"+to_string(i)+" -> nodo"+ to_string(j)+"\n";
     }
 }
+void imprimirFichas(ListaDoble<Palabra*> *lista)
+{
+    for(int i=0; i<lista->getSize(); i++)
+    {
+        int j=i+1;
+        int k=i-1;
+        int dato= lista->obtener_at(i)->getPunteo();
+        string datofin= to_string(dato);
+        cuerpoLista+="nodo"+to_string(i)+"[shape= record label=\""+lista->obtener_at(i)->getLetra()+"\n Punteo: "+datofin+"\"];\n";
+        if(j<lista->getSize())
+        {
+        enlaceLista+="nodo"+to_string(i)+" -> nodo"+ to_string(j)+"\n";
+        }
+        if(k>=0){
+        enlaceLista+="nodo"+to_string(i)+" -> nodo"+ to_string(k)+"\n";
+        }
+    }
+}
 void hacerCiclo(string letra, int cantidad, int punteo)
 {
     for(int i=0; i<cantidad;i++)
     {
         AuxPalabra->insertar_final(new Palabra(letra,punteo));
+    }
+}
+void asignarFichas(bool u1, bool u2)
+{
+    if(u1 && u2)
+    {
+        for(int i=0; i<7; i++)
+        {
+
+        fichaJug1->agregar_fin(colaPalabras->Dequeue());
+        }
+        for(int i=0; i<7; i++)
+        {
+
+        fichaJug2->agregar_fin(colaPalabras->Dequeue());
+        }
     }
 }
