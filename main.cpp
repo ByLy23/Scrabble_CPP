@@ -1,6 +1,6 @@
 #include <iostream>
 #include "json/json.h"
-//#include "EDD/CuboDisperso.h"
+#include "EDD/CuboDisperso.h"
 #include <fstream>
 #include <stdlib.h>
 #include <clocale>
@@ -399,6 +399,7 @@ bool verificarDiccionario(string pal)
 }
 string fichasJug1="";
 void imprimirFichasJugador1(){
+    fichasJug1="";
     for(int i=0; i<fichaJug1->getSize();i++)
     {
         int va=fichaJug1->obtener_at(i)->getPunteo();
@@ -408,6 +409,7 @@ void imprimirFichasJugador1(){
 }
 string fichasJug2="";
 void imprimirFichasJugador2(){
+    fichasJug2="";
     for(int i=0; i<fichaJug2->getSize();i++)
     {
         int va=fichaJug2->obtener_at(i)->getPunteo();
@@ -420,20 +422,25 @@ bool verificarLetra(string letr,int num)
     bool bandera=false;
     if(num==1)
     {
-        for(int i=0; i<fichaJug1->getSize();i++){
+        for(int i=0; i<=fichaJug1->getSize();i++){
             if(letr.compare(fichaJug1->obtener_at(i)->getLetra())==0)
             {
                 bandera=true;
+                cout<<fichaJug1->getSize()<<endl;
                 auxLista->Enqueue(fichaJug1->eliminar(i));
+                break;
             }
         }
     }
     else{
-        for(int i=0; i<fichaJug2->getSize();i++){
+        for(int i=0; i<=fichaJug2->getSize();i++){
             if(letr.compare(fichaJug2->obtener_at(i)->getLetra())==0)
             {
                 bandera=true;
+                cout<<fichaJug2->getSize()<<endl;
+                cout<<i<<endl;
                 auxLista->Enqueue(fichaJug2->eliminar(i));
+                break;
             }
         }
     }
@@ -453,11 +460,22 @@ void turnos(int jug)
             palabra+=letra;
             if(jug==1){
             if(verificarLetra(letra,1)){
-            }else{break;}
+                    cout<<"Letra Valida"<<endl;
+            }else{
+                while(auxLista->getTamanio()!=0)
+                {
+                    fichaJug1->agregar_fin(auxLista->Dequeue());
+                }
+                break;}
             }else{
             if(verificarLetra(letra,2))
             {
-            }else{break;}
+            }else{
+                 while(auxLista->getTamanio()!=0)
+                {
+                    fichaJug2->agregar_fin(auxLista->Dequeue());
+                }
+                break;}
             }
             cout<<"1. Salir"<<endl;
             cin>>fin;
@@ -472,19 +490,41 @@ void turnos(int jug)
             cout<<"1. Ingresar Horizontal"<<endl;
             cout<<"2. Ingresar Vertical"<<endl;
             cin>>verHori;
-                int larg= x+ palabra.length();
+                int larg;
             switch(verHori)
             {
             case 1:
+                larg= x+ palabra.length();
                 if(larg>DimensionTablero && y>DimensionTablero){
 
+                }else{
+                     cout<<"Vamos bien :3"<<endl;
                 }
                 break;
             case 2:
+                larg=y+ palabra.length();
+                if(larg>DimensionTablero && y>DimensionTablero){
+                }
+                else{
+                    cout<<"Vamos bien :3"<<endl;
+                }
                 break;
             }
             }else{
                 cout<<"Palabra no valida"<<endl;
+                if(jug==1){
+
+                while(auxLista->getTamanio()!=0)
+                {
+                    fichaJug1->agregar_fin(auxLista->Dequeue());
+                }
+
+            }else{
+                 while(auxLista->getTamanio()!=0)
+                {
+                    fichaJug2->agregar_fin(auxLista->Dequeue());
+                }
+            }
             }
 
 }

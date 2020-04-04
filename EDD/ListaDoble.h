@@ -134,7 +134,7 @@ template<class T>
 T ListaDoble<T>::eliminar(int index)
 {
     T informacion;
- if(index>=0 && index<=size)
+ if(index>=0 && index<size)
     {
         if(index==0){
                 informacion=this->inicio->getDato();
@@ -143,7 +143,7 @@ T ListaDoble<T>::eliminar(int index)
             this->inicio->setAnterior(0);
             this->size--;
         }
-        else if(index==this->size){
+        else if(index==this->size-1){
             informacion=this->fin->getDato();
             fin=fin->getAnterior();
             fin->getSiguiente()->setAnterior(0);

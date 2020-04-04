@@ -1,14 +1,9 @@
 #ifndef CUBODISPERSO_H_INCLUDED
 #define CUBODISPERSO_H_INCLUDED
-#include "Palabra.h"
 #include <iostream>
 
 using namespace std;
 //arreglos matriz
-/*
-Primero, vamos a verificar ingreso, lo cual va a ser en orden, del 0 hasta el numero que salga, en orden
-vamos a guardar, Casilla(punteo),string letra
-*/
 class CuboDisperso
 {
     class Nodo
@@ -19,15 +14,66 @@ class CuboDisperso
         Nodo *abajo;
         int fila;
         int columna;
+        int multiplicador;
         string letra;
         int tamanio;
     public:
-        Nodo(string letra, int fila, int columna)
-        {
+        //crear cabeceras de filas y columnas
+
+        Nodo(string letra, int fila, int columna, int multi)
+        {//anio es filas, mes es columnas
             this->fila=fila;
             this->columna=columna;
             this->letra=letra;
+            this->multiplicador=multi;
             siguiente=anterior=arriba=abajo=0;
+        }
+         Nodo(int dato, bool esFila)
+        {
+            if(esFila)
+            {
+            this->fila=dato;
+            this->columna=-1;
+            this->letra="";
+            this->multiplicador=0;
+            siguiente=anterior=arriba=abajo=0;
+            }else{
+            this->fila=-1;
+            this->columna=dato;
+            this->letra="";
+            this->multiplicador=0;
+            siguiente=anterior=arriba=abajo=0;
+            }
+        }
+        int getColumna()
+        {
+            return columna;
+        }
+        int getFila()
+        {
+            return fila;
+        }
+        int getMuti()
+        {
+            return multiplicador;
+        }
+        string getLetra()
+        {
+            return letra;
+        }
+        void setColumna(int f)
+        {
+            columna=f;
+        }void setFila(int f)
+        {
+            fila=f;
+        }void setMulti(int f)
+        {
+           multiplicador=f;
+        }
+        void setLetra(string letra)
+        {
+            this->letra=letra;
         }
         Nodo *getSiguiente()
         {
@@ -45,14 +91,6 @@ class CuboDisperso
         {
             return abajo;
         }
-        Nodo *getAtras()
-        {
-            return atras;
-        }
-        Nodo *getAdelante()
-        {
-            return adelante;
-        }
         void setSiguiente(Nodo *siguiente)
         {
             this->siguiente=siguiente;
@@ -60,14 +98,6 @@ class CuboDisperso
         void setAnterior(Nodo *anterior)
         {
             this->anterior=anterior;
-        }
-        void setAtras(Nodo *atras)
-        {
-            this->atras=atras;
-        }
-        void setAdelante(Nodo *adelante)
-        {
-            this->adelante=adelante;
         }
         void setArriba(Nodo *arriba)
         {
@@ -79,11 +109,14 @@ class CuboDisperso
             this->abajo=abajo;
         }
     };
+
+
+
     Nodo *raiz;
     public:
     CuboDisperso()
     {
-        raiz= new Nodo("raiz", -1, "raiz",NULL);
+        raiz= new Nodo("raiz",-1,-1,0);
     }
     Nodo *busquedaNodo(int columna, int fila)
 {
@@ -94,7 +127,7 @@ class CuboDisperso
     {
         Nodo *aux2=raiz;
         while(aux2!=0){
-            if(aux2->getAnio()==columna && aux2->getMes().compare(fila))
+            if(aux2->getColumna()==columna && aux2->getFila()==fila)
                 {
                     retorno=aux2;
                     bandera=true;
@@ -111,16 +144,16 @@ class CuboDisperso
 Nodo *crearColumna(int columna)
 {
     Nodo *cabeza_col= raiz;
-    Nodo *col_insertada= insertarColumna(new Nodo(columna), cabeza_col);
+    Nodo *col_insertada= insertarColumna(new Nodo(columna,false), cabeza_col);
     return col_insertada;
 }
-Nodo *crearFila(string fila)
+Nodo *crearFila(int fila)
 {
     Nodo *cabezaFila= raiz;
-    Nodo *filaInsertada= insertarFila(new Nodo(fila),cabezaFila);
+    Nodo *filaInsertada= insertarFila(new Nodo(fila,true),cabezaFila);
     return filaInsertada;
 }
-void imprimir()
+/*void imprimir()
 {
     Nodo *aux= raiz;
     while(aux!=0){
@@ -141,22 +174,22 @@ void imprimir()
             cout<<endl;
             aux=aux->getAbajo();
     }
-}
-void crearNodo(string nombre, int anio, string mes, ListaSimple<Cancion*> *canciones)
+}*/
+void crearNodo(string nombre, int multi, int fila, int columna)
 {
-    Nodo *nuevo= new Nodo(nombre,anio,mes,canciones);
-    Nodo *NodoColumna= buscarColumna(anio);
-    Nodo *NodoFila= buscarFila(mes);
+    Nodo *nuevo= new Nodo(nombre,fila,columna,multi);
+    Nodo *NodoColumna= buscarColumna(columna);
+    Nodo *NodoFila= buscarFila(fila);
     if(NodoColumna==0 && NodoFila==0){
         //ninguno esta creado
-        NodoColumna= crearColumna(anio);
-        NodoFila= crearFila(mes);
+        NodoColumna= crearColumna(columna);
+        NodoFila= crearFila(fila);
         nuevo= insertarColumna(nuevo,NodoFila);
         nuevo= insertarFila(nuevo,NodoColumna);
     }
     else if(NodoColumna==0 && NodoFila!=0)
     {
-        NodoColumna= crearColumna(anio);
+        NodoColumna= crearColumna(columna);
         nuevo= insertarColumna(nuevo,NodoFila);
         nuevo= insertarFila(nuevo,NodoColumna);
         //solo esta creada la fila
@@ -164,39 +197,33 @@ void crearNodo(string nombre, int anio, string mes, ListaSimple<Cancion*> *canci
     else if(NodoColumna!=0 && NodoFila==0)
     {
         //solo esta creada la columna
-        NodoFila= crearFila(mes);
+        NodoFila= crearFila(fila);
         nuevo= insertarColumna(nuevo,NodoFila);
         nuevo= insertarFila(nuevo,NodoColumna);
     }
     else if(NodoColumna!=0 && NodoFila!=0)
     {
         //estan creados los dos
-        if(NodoColumna->getAnio()==nuevo->getAnio() && NodoFila->getMes()==nuevo->getMes())
-        {
-            Nodo *busqueda= busquedaNodo(anio,mes);
-            busqueda->setAdelante(nuevo);
-            nuevo->setAtras(busqueda);
-        }
-        else
-        {
         nuevo= insertarColumna(nuevo,NodoFila);
         nuevo= insertarFila(nuevo,NodoColumna);
-        }
     }
 }
 Nodo *insertarFila(Nodo *nuevo,Nodo *nodoFila)
 {
     Nodo *aux= nodoFila;
     bool Flag= false;
-    while(true)
+     while(true)
     {
-        if(aux->getMes().compare(nuevo->getMes())==0)
+        if(aux->getColumna() ==nuevo->getColumna())
         {
-            aux->setAnio(nuevo->getAnio());
-            aux->setNombreAlbum(nuevo->getNombreAlbum());
-            aux->setListaCanciones(nuevo->getCanciones());
-            Flag=true;
+            aux->setFila(nuevo->getFila());
+            aux->setLetra(nuevo->getLetra());
+            aux->setMulti(nuevo->getMuti());
             return aux;
+        }
+        else if(aux->getColumna()>nuevo->getColumna())
+        {
+            Flag= true;
             break;
         }
         if(aux->getAbajo()!=0)
@@ -204,7 +231,6 @@ Nodo *insertarFila(Nodo *nuevo,Nodo *nodoFila)
             aux=aux->getAbajo();
         }
         else{break;}
-
     }
     if(Flag)
         {
@@ -226,14 +252,14 @@ Nodo *insertarColumna(Nodo *nuevo,Nodo *nodoColumna)
     bool Flag= false;
     while(true)
     {
-        if(aux->getAnio()==nuevo->getAnio())
+        if(aux->getFila() ==nuevo->getFila())
         {
-            aux->setMes(nuevo->getMes());
-            aux->setNombreAlbum(nuevo->getNombreAlbum());
-            aux->setListaCanciones(nuevo->getCanciones());
+            aux->setColumna(nuevo->getColumna());
+            aux->setLetra(nuevo->getLetra());
+            aux->setMulti(nuevo->getMuti());
             return aux;
         }
-        else if(aux->getAnio()>nuevo->getAnio())
+        else if(aux->getFila()>nuevo->getFila())
         {
             Flag= true;
             break;
@@ -258,14 +284,14 @@ Nodo *insertarColumna(Nodo *nuevo,Nodo *nodoColumna)
     return nuevo;
 
 }
-Nodo *buscarFila(string fila)
+Nodo *buscarFila(int fila)
 {
     Nodo *aux= raiz;
     if(raiz->getAbajo()!=0)
     {
         while(aux!=0)
         {
-            if(aux->getMes().compare(fila)==0)
+            if(aux->getFila()==fila)
                 return aux;
             aux=aux->getAbajo();
         }
@@ -279,7 +305,7 @@ Nodo *buscarColumna(int columna)
     {
         while(aux!=0)
         {
-            if(aux->getAnio()==columna)
+            if(aux->getColumna()==columna)
                 return aux;
             aux= aux->getSiguiente();
         }

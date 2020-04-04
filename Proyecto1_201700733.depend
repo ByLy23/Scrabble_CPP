@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1585943944 source:a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\main.cpp
+1585959451 source:a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\main.cpp
 	<iostream>
 	"json/json.h"
 	<fstream>
@@ -12,6 +12,7 @@
 	"EDD/Cola.h"
 	"EDD/ListaDobleCircular.h"
 	"EDD/ListaSimple.h"
+	<string>
 	<windows.h>
 	"Palabra.h"
 
@@ -170,5 +171,5 @@
 
 1585879618 a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\edd\listasimple.h
 
-1585509116 a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\edd\listadoble.h
+1585957682 a:\usac\estructuras\segundo semestre\laboratorio\proyect 1\proyecto1_201700733\edd\listadoble.h
 
