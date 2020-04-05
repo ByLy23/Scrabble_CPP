@@ -531,20 +531,137 @@ void turnos(int jug)
             {
             case 1:
                 larg= x+ palabra.length();
-                if(larg>DimensionTablero && y>DimensionTablero){
+                if(!(larg>DimensionTablero) && !(y>DimensionTablero)){
                         //verificarLetra por letra hasta que encuentre un error, sino encuentra error, empezar a ingresar a la matriz
                         //al decir verificar error, es que no hay una letra diferente en esa posicion
                         //sino hay letras que ignore, si la letra es "" que ignore, al final ingresar letras
                         //cuando vaya ingresando las letras va a tomar el multiplicador de cada posicion, la multiplica
-                        //por la cantidad de puntos
+                        //por la cantidad de puntos de cada letra, esto se va sumando al punteo de cada jugador
+                        bool bandera=false;
+                        int aux= x;
+                    for (int i=0; i< palabra.length(); i++)
+                    {
+                        Palabra* prueba= auxLista->Dequeue();
+                        Nodo* busquedaTab= tablero->busquedaNodo(aux,y);
+                        if(busquedaTab==0)
+                        {
+                            auxMatriz->Enqueue(prueba);
+                            aux++;
+                        }else if(busquedaTab->getLetra().compare("")==0)
+                        {
+                            auxMatriz->Enqueue(prueba);
+                            aux++;
+                        }else if(busquedaTab->getLetra().compare(prueba->getLetra())==0)
+                        {
+                            auxMatriz->Enqueue(prueba);
+                            aux++;
+                        }else{
+                            bandera=true;
+                            break;
+                        }
+                    }
+                    if(bandera)
+                    {
+                        if(jug==1)
+                        {
+                        while(auxMatriz!=0)
+                        {
+                           fichaJug1->agregar_fin(auxMatriz->Dequeue());
+                        }
+                        while(auxLista!=0)
+                        {
+                            fichaJug1->agregar_fin(auxLista->Dequeue());
+                        }
+                        }
+                        else{
+                        while(auxMatriz!=0)
+                        {
+                           fichaJug1->agregar_fin(auxMatriz->Dequeue());
+                        }
+                        while(auxLista!=0)
+                        {
+                            fichaJug1->agregar_fin(auxLista->Dequeue());
+                        }
+                        }
+
+                    }else{
+                        while(auxMatriz->getTamanio()!=0)
+                        {
+                        Palabra* pal= auxMatriz->Dequeue();
+                            Nodo* multi= tablero->busquedaNodo(x,y);
+                            if(multi!=0)
+                                tablero->crearNodo(pal->getLetra(),multi->getMuti(),x,y);
+                            else
+                                tablero->crearNodo(pal->getLetra(),1,x,y);
+                            x++;
+                        }
+                    }
                 }else{
                      cout<<"No se puede porque el tamanio no es correcto"<<endl;
                 }
                 break;
             case 2:
                 larg=y+ palabra.length();
-                if(larg>DimensionTablero && y>DimensionTablero){
+                if(!(larg>DimensionTablero && y>DimensionTablero)){
+ bool bandera=false;
+                        int aux= y;
+                    for (int i=0; i< palabra.length(); i++)
+                    {
+                        Palabra* prueba= auxLista->Dequeue();
+                        Nodo* busquedaTab= tablero->busquedaNodo(x,aux);
+                        if(busquedaTab==0)
+                        {
+                            auxMatriz->Enqueue(prueba);
+                            aux++;
+                        }else if(busquedaTab->getLetra().compare("")==0)
+                        {
+                            auxMatriz->Enqueue(prueba);
+                            aux++;
+                        }else if(busquedaTab->getLetra().compare(prueba->getLetra())==0)
+                        {
+                            auxMatriz->Enqueue(prueba);
+                            aux++;
+                        }else{
+                            bandera=true;
+                            break;
+                        }
+                    }
+                    if(bandera)
+                    {
+                        if(jug==1)
+                        {
+                        while(auxMatriz!=0)
+                        {
+                           fichaJug1->agregar_fin(auxMatriz->Dequeue());
+                        }
+                        while(auxLista!=0)
+                        {
+                            fichaJug1->agregar_fin(auxLista->Dequeue());
+                        }
+                        }
+                        else{
+                        while(auxMatriz!=0)
+                        {
+                           fichaJug1->agregar_fin(auxMatriz->Dequeue());
+                        }
+                        while(auxLista!=0)
+                        {
+                            fichaJug1->agregar_fin(auxLista->Dequeue());
+                        }
+                        }
 
+                    }else{
+                        while(auxMatriz->getTamanio()!=0)
+                        {
+                        Palabra* pal= auxMatriz->Dequeue();
+                            Nodo* multi= tablero->busquedaNodo(x,y);
+                            if(multi!=0)
+                                tablero->crearNodo(pal->getLetra(),multi->getMuti(),x,y);
+                            else
+                                tablero->crearNodo(pal->getLetra(),1,x,y);
+                            y++;
+                        }
+                    }
                 }
                 else{
                     cout<<"No se puede porque el tamanio no es correcto"<<endl;

@@ -4,9 +4,7 @@
 
 using namespace std;
 //arreglos matriz
-class CuboDisperso
-{
-    class Nodo
+class Nodo
     {
         Nodo *siguiente;
         Nodo *anterior;
@@ -109,6 +107,9 @@ class CuboDisperso
             this->abajo=abajo;
         }
     };
+class CuboDisperso
+{
+
     Nodo *raiz;
         string cuerpo="";
         string enlaces="";

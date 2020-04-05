@@ -27,9 +27,11 @@ digraph tablero{
 "C4F0"[shape= record label="C4,F0" style=filled fillcolor=gray group=1];
 "C4F10"[shape= record label="" style=filled fillcolor=yellow group=10];
 "C5F0"[shape= record label="C5,F0" style=filled fillcolor=gray group=1];
+"C5F5"[shape= record label="e" style=filled fillcolor=ligthbluegroup=5];
 "C5F15"[shape= record label="" style=filled fillcolor=green group=15];
 "C5F19"[shape= record label="" style=filled fillcolor=green group=19];
 "C6F0"[shape= record label="C6,F0" style=filled fillcolor=gray group=1];
+"C6F5"[shape= record label="o" style=filled fillcolor=ligthbluegroup=5];
 "C6F10"[shape= record label="" style=filled fillcolor=green group=10];
 "C7F0"[shape= record label="C7,F0" style=filled fillcolor=gray group=1];
 "C8F0"[shape= record label="C8,F0" style=filled fillcolor=gray group=1];
@@ -103,6 +105,7 @@ digraph tablero{
 "C2F0" -> "C3F0"
 "C2F5" -> "C2F0"
 "C2F5" -> "C0F5"
+"C2F5" -> "C5F5"
 "C3F0" -> "C2F0"
 "C3F0" -> "C4F0"
 "C4F0" -> "C4F10"
@@ -111,19 +114,26 @@ digraph tablero{
 "C4F10" -> "C4F0"
 "C4F10" -> "C0F10"
 "C4F10" -> "C6F10"
-"C5F0" -> "C5F15"
+"C5F0" -> "C5F5"
 "C5F0" -> "C4F0"
 "C5F0" -> "C6F0"
-"C5F15" -> "C5F0"
+"C5F5" -> "C5F0"
+"C5F5" -> "C5F15"
+"C5F5" -> "C2F5"
+"C5F5" -> "C6F5"
+"C5F15" -> "C5F5"
 "C5F15" -> "C5F19"
 "C5F15" -> "C0F15"
 "C5F15" -> "C10F15"
 "C5F19" -> "C5F15"
 "C5F19" -> "C0F19"
-"C6F0" -> "C6F10"
+"C6F0" -> "C6F5"
 "C6F0" -> "C5F0"
 "C6F0" -> "C7F0"
-"C6F10" -> "C6F0"
+"C6F5" -> "C6F0"
+"C6F5" -> "C6F10"
+"C6F5" -> "C5F5"
+"C6F10" -> "C6F5"
 "C6F10" -> "C4F10"
 "C7F0" -> "C6F0"
 "C7F0" -> "C8F0"
