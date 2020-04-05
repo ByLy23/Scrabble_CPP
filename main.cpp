@@ -714,6 +714,15 @@ void iniciarJuego()
             cout<<"Terminar turno con 2"<<endl;
             cin>>variableTurno;
             }while(variableTurno!=2);
+            string todoArbolito="";
+            tablero->imprimir();
+            todoArbolito="digraph tablero{ \n "+tablero->getCuerpo()+"\n"+tablero->getEnlaces()+"{rank= same; "+tablero->getGrupo()+"}\n"+"}";
+            graficarReportes(todoArbolito,"tablero");
+            //cout<<arbolis<<endl;
+            tablero->setCuerpo("");
+            tablero->setEnlaces("");
+            tablero->setGrupo("");
+            todoArbolito="";
         }
         else{
             int variableTurno=0;

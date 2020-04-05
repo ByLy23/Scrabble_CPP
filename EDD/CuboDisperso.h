@@ -231,7 +231,7 @@ void imprimir()
                cuerpo+="\""+fil+col+"\""+"[shape= record label=\""+aux2->getLetra()+"\" style=filled fillcolor=green group="+to_string(aux2->getColumna())+"];\n";
             }
             else if(aux2->getMuti()==1){
-                cuerpo+="\""+fil+col+"\""+"[shape= record label=\""+aux2->getLetra()+"\" style=filled fillcolor=ligthbluegroup="+to_string(aux2->getColumna())+"];\n";
+                cuerpo+="\""+fil+col+"\""+"[shape= record label=\""+aux2->getLetra()+"\" style=filled fillcolor=blue group="+to_string(aux2->getColumna())+"];\n";
             }else{
                 if(aux2->getFila()==0 && aux2->getColumna()==0){
                         cuerpo+="\""+fil+col+"\""+"[shape= record label=\"Raiz\" style=filled fillcolor=gray group=1];\n";
@@ -371,7 +371,7 @@ Nodo *buscarColumna(int fila)
             aux=aux->getAbajo();
         }
     }
-    return 0;
+    return aux;
 }
 Nodo *buscarFila(int columna)
 {
@@ -385,7 +385,7 @@ Nodo *buscarFila(int columna)
             aux= aux->getSiguiente();
         }
     }
-    return 0;
+    return aux;
 }
     /*Nodo *insertarFila(Nodo *nuevo, Nodo *fila);
     Nodo *insertarColumna(Nodo *nuevo, Nodo *nodoColumna);
