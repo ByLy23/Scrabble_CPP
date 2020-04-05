@@ -32,6 +32,13 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="ArbolBusqueda.cpp" />
+		<Unit filename="Coordenada.cpp" />
+		<Unit filename="Coordenada.h" />
+		<Unit filename="Palabra.cpp" />
+		<Unit filename="Palabra.h" />
+		<Unit filename="Usuario.cpp" />
+		<Unit filename="Usuario.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

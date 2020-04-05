@@ -36,7 +36,7 @@ bool verificarUsuario(string);
     string usuario1="";
     string usuario2="";
 void hacerCiclo(string, int, int);
-NodoABB *raiz;
+NodoABB *raizs;
     static int DimensionTablero=0;
     int contadorAux=0;
    // Aca van a ir las listas que se utilizaran en todo el programa
@@ -44,6 +44,7 @@ NodoABB *raiz;
    ListaDoble<Palabra*> *fichaJug1= new ListaDoble<Palabra*>();
    ListaDoble<Palabra*> *fichaJug2= new ListaDoble<Palabra*>();
    Cola<Palabra*> *colaPalabras= new Cola<Palabra*>();
+   CuboDisperso* tablero= new CuboDisperso();
    Cola<Palabra*> *auxLista= new Cola<Palabra*>();
    Cola<Palabra*> *auxMatriz= new Cola<Palabra*>();
    ListaSimple<Palabra*> *AuxPalabra= new ListaSimple<Palabra*>();
@@ -52,12 +53,12 @@ int main()
 {
     bool user1=false;
     bool user2=false;
-    raiz=new NodoABB();
+    raizs=new NodoABB();
     setlocale(LC_CTYPE, "Spanish");
     //Aca van a ir todas las variables necesarias
     int contadorMenu=0;
     string nombreUser="";
-
+string arbolis="";
     //Aca va a ir el menu
     do{
             int random;
@@ -71,9 +72,9 @@ int main()
         switch(contadorMenu)
         {
         case 99:
-            srand(time(0));
-            random= rand() % 2;
-            cout<<random<<endl;
+            tablero->imprimir();
+            arbolis="digraph diccionario{ \n "+tablero->getCuerpo()+"\n"+tablero->getEnlaces()+"}";
+            cout<<arbolis<<endl;
             break;
         case 1:
             agregarCola();
@@ -84,6 +85,7 @@ int main()
                // cout<<"Continuar Juego"<<endl;
                 user1=true;
                 arbolUsuarios->bandera=false;
+
             }
             else{
                 cout<<"Usuario no registrado"<<endl;
@@ -111,7 +113,7 @@ int main()
             system("cls");
             cout<<"Ingresar Usuario"<<endl;
             cin>>nombreUser;
-            arbolUsuarios->insertarNodoABB(raiz, nombreUser);
+            arbolUsuarios->insertarNodoABB(raizs, nombreUser);
             break;
         case 4:
             mostrarReportes(arbolUsuarios);
@@ -162,7 +164,7 @@ void mostrarReportes(ArbolBusqueda *arbolUsuarios)
             //cola de letras en forma desordenada
             break;
         case 3:
-            arbolUsuarios->imprimirNodo(raiz,contadorAux);
+            arbolUsuarios->imprimirNodo(raizs,contadorAux);
             todoArbolito="digraph graficaArbolito{ \n linkdir=LR \n"+arbolUsuarios->getCuerpo()+"\n"+arbolUsuarios->getEnlaces()+"}";
             //cout<<todoArbolito<<endl;
             graficarReportes(todoArbolito,"ArbolBinBusqueda");
@@ -172,7 +174,7 @@ void mostrarReportes(ArbolBusqueda *arbolUsuarios)
             //arbol binario de usuarios
             break;
         case 4:
-            arbolUsuarios->preorden(raiz);
+            arbolUsuarios->preorden(raizs);
             todoArbolito="digraph graficaPreorden{ \n linkdir=LR \n arreglo[shape= record label= \"{"+arbolUsuarios->getCuerpo()+"}\"];\n}";
             graficarReportes(todoArbolito,"preOrden");
             arbolUsuarios->setCuerpo("");
@@ -181,7 +183,7 @@ void mostrarReportes(ArbolBusqueda *arbolUsuarios)
             //recorrido PREORDEN del arbol
             break;
         case 5:
-            arbolUsuarios->inorden(raiz);
+            arbolUsuarios->inorden(raizs);
             todoArbolito="digraph graficaInorden{ \n linkdir=LR \n arreglo[shape= record label= \"{"+arbolUsuarios->getCuerpo()+"}\"];\n}";
             graficarReportes(todoArbolito,"Inorden");
             arbolUsuarios->setCuerpo("");
@@ -190,7 +192,7 @@ void mostrarReportes(ArbolBusqueda *arbolUsuarios)
             //recorrido INORDEN del arbol
             break;
         case 6:
-            arbolUsuarios->postOrden(raiz);
+            arbolUsuarios->postOrden(raizs);
             todoArbolito="digraph graficaPostrden{ \n linkdir=LR \n arreglo[shape= record label= \"{"+arbolUsuarios->getCuerpo()+"}\"];\n}";
             graficarReportes(todoArbolito,"postOrden");
             arbolUsuarios->setCuerpo("");
@@ -243,15 +245,30 @@ void leerJSON()
     {
         const Json::Value dimension= valor["dimension"];
         DimensionTablero=dimension.asInt();
+        for(int i=0; i<DimensionTablero;i++)
+            {
+                tablero->crearFila(i);
+                tablero->crearColumna(i);
+            }
+            int doble=2;
+            int trip=3;
         const Json::Value casillasDobles= valor["casillas"]["dobles"];
         //cout<<"Dobles"<<endl;
         for(int i=0; i<casillasDobles.size(); i++){
+                int x=casillasDobles[i]["x"].asInt();
+                int y=casillasDobles[i]["y"].asInt();
+                cout<<to_string(x)+" y "+to_string(y)<<endl;
+               // tablero->crearNodo("",doble,x,y);
         //    cout<<"X: " <<casillasDobles[i]["x"].asString() <<endl;
           //  cout<<"Y: "<<casillasDobles[i]["y"].asString() <<endl;
         }
         const Json::Value casillasTriples= valor["casillas"]["triples"];
         //cout<<"Triples"<<endl;
         for(int i=0; i<casillasTriples.size(); i++){
+                int x=casillasTriples[i]["x"].asInt();
+                int y=casillasTriples[i]["y"].asInt();
+                cout<<to_string(x)+" y "+to_string(y)<<endl;
+              //  tablero->crearNodo("",trip,x,y);
           //  cout<<"X: " <<casillasTriples[i]["x"].asString() <<endl;
             //cout<<"Y: "<<casillasTriples[i]["y"].asString() <<endl;
         }
@@ -267,7 +284,7 @@ void leerJSON()
 }
 bool verificarUsuario(string user)
 {
-    return arbolUsuarios->verificaNombre(raiz, user);
+    return arbolUsuarios->verificaNombre(raizs, user);
 }
 
 void graficarReportes(string archivo,string nombre)

@@ -33,12 +33,12 @@ class CuboDisperso
             if(esFila)
             {
             this->fila=dato;
-            this->columna=-1;
+            this->columna=0;
             this->letra="";
             this->multiplicador=0;
             siguiente=anterior=arriba=abajo=0;
             }else{
-            this->fila=-1;
+            this->fila=0;
             this->columna=dato;
             this->letra="";
             this->multiplicador=0;
@@ -109,14 +109,29 @@ class CuboDisperso
             this->abajo=abajo;
         }
     };
-
-
-
     Nodo *raiz;
+        string cuerpo="";
+        string enlaces="";
     public:
+        string getEnlaces()
+        {
+            return enlaces;
+        }
+        string getCuerpo()
+        {
+            return cuerpo;
+        }
+        void setCuerpo(string cuerpo)
+        {
+            this->cuerpo=cuerpo;
+        }
+        void setEnlaces(string enlaces)
+        {
+            this->enlaces=enlaces;
+        }
     CuboDisperso()
     {
-        raiz= new Nodo("raiz",-1,-1,0);
+        raiz= new Nodo("raiz",0,0,0);
     }
     Nodo *busquedaNodo(int columna, int fila)
 {
@@ -153,28 +168,47 @@ Nodo *crearFila(int fila)
     Nodo *filaInsertada= insertarFila(new Nodo(fila,true),cabezaFila);
     return filaInsertada;
 }
-/*void imprimir()
+void imprimir()
 {
     Nodo *aux= raiz;
     while(aux!=0){
-            Nodo *aux2=aux;
-            while(aux2!=0)
-            {
-                if(aux2->getCanciones()!=0)
-                {
-                    ListaSimple<Cancion*> *canciones= aux2->getCanciones();
-                    for(int i=0; i<canciones->getTamanio(); i++)
-                    {
-                        cout<<canciones->get_element_at(i)->getCancion()<<"Funciona"<<endl;
-                    }
-                }
-                cout<<"Canbio album"<<endl;
-                 aux2=aux2->getSiguiente();
+
+            string fil="F"+to_string(aux->getFila());
+            string col="C"+to_string(aux->getColumna());
+            if(aux->getAnterior()!=0){
+                string filanterior="F"+to_string(aux->getAnterior()->getFila());
+            string colanterior="C"+to_string(aux->getAnterior()->getColumna());
+            enlaces+="\""+fil+col+"\" -> \""+filanterior+colanterior+"\"\n";
             }
-            cout<<endl;
-            aux=aux->getAbajo();
+            if(aux->getSiguiente()!=0){
+                string filsiguiente="F"+to_string(aux->getSiguiente()->getFila());
+            string colsiguiente="C"+to_string(aux->getSiguiente()->getColumna());
+            enlaces+="\""+fil+col+"\" -> \""+filsiguiente+colsiguiente+"\"\n";
+            }
+            cuerpo+="\""+fil+col+"\""+"[shape= record label=\""+fil+","+col+"\"];\n";
+
+        Nodo *aux2=aux;
+        while(aux2!=0)
+        {
+  string fil="F"+to_string(aux2->getFila());
+            string col="C"+to_string(aux2->getColumna());
+            if(aux2->getArriba()!=0){
+                string filanterior="F"+to_string(aux2->getArriba()->getFila());
+            string colanterior="C"+to_string(aux2->getArriba()->getColumna());
+            enlaces+="\""+fil+col+"\" -> \""+filanterior+colanterior+"\"\n";
+            }
+            if(aux2->getAbajo()!=0){
+                string filsiguiente="F"+to_string(aux2->getAbajo()->getFila());
+            string colsiguiente="C"+to_string(aux2->getAbajo()->getColumna());
+            enlaces+="\""+fil+col+"\" -> \""+filsiguiente+colsiguiente+"\"\n";
+            }
+            cuerpo+="\""+fil+col+"\""+"[shape= record label=\""+fil+","+col+"\" group=1];\n";
+            aux2=aux2->getAbajo();
+        }
+        cout<<endl;
+    aux=aux->getSiguiente();
+        }
     }
-}*/
 void crearNodo(string nombre, int multi, int fila, int columna)
 {
     Nodo *nuevo= new Nodo(nombre,fila,columna,multi);
@@ -208,7 +242,7 @@ void crearNodo(string nombre, int multi, int fila, int columna)
         nuevo= insertarFila(nuevo,NodoColumna);
     }
 }
-Nodo *insertarFila(Nodo *nuevo,Nodo *nodoFila)
+Nodo *insertarColumna(Nodo *nuevo,Nodo *nodoFila)
 {
     Nodo *aux= nodoFila;
     bool Flag= false;
@@ -246,7 +280,7 @@ Nodo *insertarFila(Nodo *nuevo,Nodo *nodoFila)
     return nuevo;
 
 }
-Nodo *insertarColumna(Nodo *nuevo,Nodo *nodoColumna)
+Nodo *insertarFila(Nodo *nuevo,Nodo *nodoColumna)
 {
     Nodo *aux= nodoColumna;
     bool Flag= false;
@@ -284,28 +318,28 @@ Nodo *insertarColumna(Nodo *nuevo,Nodo *nodoColumna)
     return nuevo;
 
 }
-Nodo *buscarFila(int fila)
+Nodo *buscarColumna(int fila)
 {
     Nodo *aux= raiz;
     if(raiz->getAbajo()!=0)
     {
         while(aux!=0)
         {
-            if(aux->getFila()==fila)
+            if(fila==aux->getFila())
                 return aux;
             aux=aux->getAbajo();
         }
     }
     return 0;
 }
-Nodo *buscarColumna(int columna)
+Nodo *buscarFila(int columna)
 {
     Nodo *aux= raiz;
     if(aux->getSiguiente()!=0)
     {
         while(aux!=0)
         {
-            if(aux->getColumna()==columna)
+            if(columna==aux->getColumna())
                 return aux;
             aux= aux->getSiguiente();
         }
