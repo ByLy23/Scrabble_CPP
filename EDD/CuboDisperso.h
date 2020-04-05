@@ -112,7 +112,16 @@ class CuboDisperso
     Nodo *raiz;
         string cuerpo="";
         string enlaces="";
+        string grupo="";
     public:
+        string getGrupo()
+        {
+            return grupo;
+        }
+        void setGrupo(string grupo)
+        {
+            this->grupo=grupo;
+        }
         string getEnlaces()
         {
             return enlaces;
@@ -206,6 +215,7 @@ void imprimir()
             aux2=aux2->getAbajo();
         }
         cout<<endl;
+        grupo+= fil+col+"; ";
     aux=aux->getSiguiente();
         }
     }

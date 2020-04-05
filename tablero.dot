@@ -1,0 +1,146 @@
+digraph tablero{ 
+ "F0C0"[shape= record label="F0,C0"];
+"F0C0"[shape= record label="F0,C0" group=1];
+"F0C1"[shape= record label="F0,C1" group=1];
+"F0C2"[shape= record label="F0,C2" group=1];
+"F0C3"[shape= record label="F0,C3" group=1];
+"F0C4"[shape= record label="F0,C4" group=1];
+"F0C5"[shape= record label="F0,C5" group=1];
+"F0C6"[shape= record label="F0,C6" group=1];
+"F0C7"[shape= record label="F0,C7" group=1];
+"F0C8"[shape= record label="F0,C8" group=1];
+"F0C9"[shape= record label="F0,C9" group=1];
+"F0C10"[shape= record label="F0,C10" group=1];
+"F0C11"[shape= record label="F0,C11" group=1];
+"F0C12"[shape= record label="F0,C12" group=1];
+"F0C13"[shape= record label="F0,C13" group=1];
+"F0C14"[shape= record label="F0,C14" group=1];
+"F0C15"[shape= record label="F0,C15" group=1];
+"F0C16"[shape= record label="F0,C16" group=1];
+"F0C17"[shape= record label="F0,C17" group=1];
+"F0C18"[shape= record label="F0,C18" group=1];
+"F0C19"[shape= record label="F0,C19" group=1];
+"F0C20"[shape= record label="F0,C20" group=1];
+"F1C0"[shape= record label="F1,C0"];
+"F1C0"[shape= record label="F1,C0" group=1];
+"F2C0"[shape= record label="F2,C0"];
+"F2C0"[shape= record label="F2,C0" group=1];
+"F3C0"[shape= record label="F3,C0"];
+"F3C0"[shape= record label="F3,C0" group=1];
+"F4C0"[shape= record label="F4,C0"];
+"F4C0"[shape= record label="F4,C0" group=1];
+"F5C0"[shape= record label="F5,C0"];
+"F5C0"[shape= record label="F5,C0" group=1];
+"F6C0"[shape= record label="F6,C0"];
+"F6C0"[shape= record label="F6,C0" group=1];
+"F7C0"[shape= record label="F7,C0"];
+"F7C0"[shape= record label="F7,C0" group=1];
+"F8C0"[shape= record label="F8,C0"];
+"F8C0"[shape= record label="F8,C0" group=1];
+"F9C0"[shape= record label="F9,C0"];
+"F9C0"[shape= record label="F9,C0" group=1];
+"F10C0"[shape= record label="F10,C0"];
+"F10C0"[shape= record label="F10,C0" group=1];
+"F11C0"[shape= record label="F11,C0"];
+"F11C0"[shape= record label="F11,C0" group=1];
+"F12C0"[shape= record label="F12,C0"];
+"F12C0"[shape= record label="F12,C0" group=1];
+"F13C0"[shape= record label="F13,C0"];
+"F13C0"[shape= record label="F13,C0" group=1];
+"F14C0"[shape= record label="F14,C0"];
+"F14C0"[shape= record label="F14,C0" group=1];
+"F15C0"[shape= record label="F15,C0"];
+"F15C0"[shape= record label="F15,C0" group=1];
+"F16C0"[shape= record label="F16,C0"];
+"F16C0"[shape= record label="F16,C0" group=1];
+"F17C0"[shape= record label="F17,C0"];
+"F17C0"[shape= record label="F17,C0" group=1];
+"F18C0"[shape= record label="F18,C0"];
+"F18C0"[shape= record label="F18,C0" group=1];
+"F19C0"[shape= record label="F19,C0"];
+"F19C0"[shape= record label="F19,C0" group=1];
+"F20C0"[shape= record label="F20,C0"];
+"F20C0"[shape= record label="F20,C0" group=1];
+
+"F0C0" -> "F1C0"
+"F0C0" -> "F0C1"
+"F0C1" -> "F0C0"
+"F0C1" -> "F0C2"
+"F0C2" -> "F0C1"
+"F0C2" -> "F0C3"
+"F0C3" -> "F0C2"
+"F0C3" -> "F0C4"
+"F0C4" -> "F0C3"
+"F0C4" -> "F0C5"
+"F0C5" -> "F0C4"
+"F0C5" -> "F0C6"
+"F0C6" -> "F0C5"
+"F0C6" -> "F0C7"
+"F0C7" -> "F0C6"
+"F0C7" -> "F0C8"
+"F0C8" -> "F0C7"
+"F0C8" -> "F0C9"
+"F0C9" -> "F0C8"
+"F0C9" -> "F0C10"
+"F0C10" -> "F0C9"
+"F0C10" -> "F0C11"
+"F0C11" -> "F0C10"
+"F0C11" -> "F0C12"
+"F0C12" -> "F0C11"
+"F0C12" -> "F0C13"
+"F0C13" -> "F0C12"
+"F0C13" -> "F0C14"
+"F0C14" -> "F0C13"
+"F0C14" -> "F0C15"
+"F0C15" -> "F0C14"
+"F0C15" -> "F0C16"
+"F0C16" -> "F0C15"
+"F0C16" -> "F0C17"
+"F0C17" -> "F0C16"
+"F0C17" -> "F0C18"
+"F0C18" -> "F0C17"
+"F0C18" -> "F0C19"
+"F0C19" -> "F0C18"
+"F0C19" -> "F0C20"
+"F0C20" -> "F0C19"
+"F1C0" -> "F0C0"
+"F1C0" -> "F2C0"
+"F2C0" -> "F1C0"
+"F2C0" -> "F3C0"
+"F3C0" -> "F2C0"
+"F3C0" -> "F4C0"
+"F4C0" -> "F3C0"
+"F4C0" -> "F5C0"
+"F5C0" -> "F4C0"
+"F5C0" -> "F6C0"
+"F6C0" -> "F5C0"
+"F6C0" -> "F7C0"
+"F7C0" -> "F6C0"
+"F7C0" -> "F8C0"
+"F8C0" -> "F7C0"
+"F8C0" -> "F9C0"
+"F9C0" -> "F8C0"
+"F9C0" -> "F10C0"
+"F10C0" -> "F9C0"
+"F10C0" -> "F11C0"
+"F11C0" -> "F10C0"
+"F11C0" -> "F12C0"
+"F12C0" -> "F11C0"
+"F12C0" -> "F13C0"
+"F13C0" -> "F12C0"
+"F13C0" -> "F14C0"
+"F14C0" -> "F13C0"
+"F14C0" -> "F15C0"
+"F15C0" -> "F14C0"
+"F15C0" -> "F16C0"
+"F16C0" -> "F15C0"
+"F16C0" -> "F17C0"
+"F17C0" -> "F16C0"
+"F17C0" -> "F18C0"
+"F18C0" -> "F17C0"
+"F18C0" -> "F19C0"
+"F19C0" -> "F18C0"
+"F19C0" -> "F20C0"
+"F20C0" -> "F19C0"
+{rank= same; F0C0; F1C0; F2C0; F3C0; F4C0; F5C0; F6C0; F7C0; F8C0; F9C0; F10C0; F11C0; F12C0; F13C0; F14C0; F15C0; F16C0; F17C0; F18C0; F19C0; F20C0; }
+}

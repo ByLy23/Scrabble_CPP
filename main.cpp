@@ -73,8 +73,12 @@ string arbolis="";
         {
         case 99:
             tablero->imprimir();
-            arbolis="digraph diccionario{ \n "+tablero->getCuerpo()+"\n"+tablero->getEnlaces()+"}";
-            cout<<arbolis<<endl;
+            arbolis="digraph tablero{ \n "+tablero->getCuerpo()+"\n"+tablero->getEnlaces()+"{rank= same; "+tablero->getGrupo()+"}\n"+"}";
+            graficarReportes(arbolis,"tablero");
+            tablero->setCuerpo("");
+            tablero->setEnlaces("");
+            tablero->setGrupo("");
+            arbolis="";
             break;
         case 1:
             agregarCola();
@@ -244,7 +248,7 @@ void leerJSON()
     if(parseSuccess)
     {
         const Json::Value dimension= valor["dimension"];
-        DimensionTablero=dimension.asInt();
+        DimensionTablero=dimension.asInt()+1;
         for(int i=0; i<DimensionTablero;i++)
             {
                 tablero->crearFila(i);
