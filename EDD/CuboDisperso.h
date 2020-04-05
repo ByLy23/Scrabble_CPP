@@ -182,39 +182,69 @@ void imprimir()
     Nodo *aux= raiz;
     while(aux!=0){
 
-            string fil="F"+to_string(aux->getFila());
-            string col="C"+to_string(aux->getColumna());
-            if(aux->getAnterior()!=0){
-                string filanterior="F"+to_string(aux->getAnterior()->getFila());
-            string colanterior="C"+to_string(aux->getAnterior()->getColumna());
+            string fil="C"+to_string(aux->getFila());
+            string col="F"+to_string(aux->getColumna());
+           /* if(aux->getAnterior()!=0){
+                string filanterior="C"+to_string(aux->getAnterior()->getFila());
+            string colanterior="F"+to_string(aux->getAnterior()->getColumna());
             enlaces+="\""+fil+col+"\" -> \""+filanterior+colanterior+"\"\n";
             }
             if(aux->getSiguiente()!=0){
-                string filsiguiente="F"+to_string(aux->getSiguiente()->getFila());
-            string colsiguiente="C"+to_string(aux->getSiguiente()->getColumna());
+                string filsiguiente="C"+to_string(aux->getSiguiente()->getFila());
+            string colsiguiente="F"+to_string(aux->getSiguiente()->getColumna());
             enlaces+="\""+fil+col+"\" -> \""+filsiguiente+colsiguiente+"\"\n";
-            }
-            cuerpo+="\""+fil+col+"\""+"[shape= record label=\""+fil+","+col+"\"];\n";
+            }*/
+            //cuerpo+="\""+fil+col+"\""+"[shape= record label=\""+fil+","+col+"\"];\n";
 
         Nodo *aux2=aux;
         while(aux2!=0)
         {
-  string fil="F"+to_string(aux2->getFila());
-            string col="C"+to_string(aux2->getColumna());
+  string fil="C"+to_string(aux2->getFila());
+            string col="F"+to_string(aux2->getColumna());
             if(aux2->getArriba()!=0){
-                string filanterior="F"+to_string(aux2->getArriba()->getFila());
-            string colanterior="C"+to_string(aux2->getArriba()->getColumna());
+                string filanterior="C"+to_string(aux2->getArriba()->getFila());
+            string colanterior="F"+to_string(aux2->getArriba()->getColumna());
             enlaces+="\""+fil+col+"\" -> \""+filanterior+colanterior+"\"\n";
             }
             if(aux2->getAbajo()!=0){
-                string filsiguiente="F"+to_string(aux2->getAbajo()->getFila());
-            string colsiguiente="C"+to_string(aux2->getAbajo()->getColumna());
+                string filsiguiente="C"+to_string(aux2->getAbajo()->getFila());
+            string colsiguiente="F"+to_string(aux2->getAbajo()->getColumna());
             enlaces+="\""+fil+col+"\" -> \""+filsiguiente+colsiguiente+"\"\n";
             }
-            cuerpo+="\""+fil+col+"\""+"[shape= record label=\""+fil+","+col+"\" group=1];\n";
+            if(aux2->getAnterior()!=0){
+                string filanterior="C"+to_string(aux2->getAnterior()->getFila());
+            string colanterior="F"+to_string(aux2->getAnterior()->getColumna());
+            enlaces+="\""+fil+col+"\" -> \""+filanterior+colanterior+"\"\n";
+            }
+            if(aux2->getSiguiente()!=0){
+                string filsiguiente="C"+to_string(aux2->getSiguiente()->getFila());
+            string colsiguiente="F"+to_string(aux2->getSiguiente()->getColumna());
+            enlaces+="\""+fil+col+"\" -> \""+filsiguiente+colsiguiente+"\"\n";
+            }
+            if(aux2->getMuti()==2)
+            {
+            cuerpo+="\""+fil+col+"\""+"[shape= record label=\""+aux2->getLetra()+"\" style=filled fillcolor=yellow group="+to_string(aux2->getColumna())+"];\n";
+            }
+            else if(aux2->getMuti()==3)
+            {
+               cuerpo+="\""+fil+col+"\""+"[shape= record label=\""+aux2->getLetra()+"\" style=filled fillcolor=green group="+to_string(aux2->getColumna())+"];\n";
+            }
+            else if(aux2->getMuti()==1){
+                cuerpo+="\""+fil+col+"\""+"[shape= record label=\""+aux2->getLetra()+"\" style=filled fillcolor=ligthbluegroup="+to_string(aux2->getColumna())+"];\n";
+            }else{
+                if(aux2->getFila()==0 && aux2->getColumna()==0){
+                        cuerpo+="\""+fil+col+"\""+"[shape= record label=\"Raiz\" style=filled fillcolor=gray group=1];\n";
+                }else{
+                    if(aux2->getFila()==0)
+                        cuerpo+="\""+fil+col+"\""+"[shape= record label=\""+fil+","+col+"\" style=filled fillcolor=gray group="+to_string(aux2->getColumna())+"];\n";
+                    else
+                        cuerpo+="\""+fil+col+"\""+"[shape= record label=\""+fil+","+col+"\" style=filled fillcolor=gray group=1];\n";
+                   // cout<<fil<<endl;
+                }
+                }
+                //cout<<fil+col<<endl;
             aux2=aux2->getAbajo();
         }
-        cout<<endl;
         grupo+= fil+col+"; ";
     aux=aux->getSiguiente();
         }

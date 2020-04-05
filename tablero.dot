@@ -1,146 +1,165 @@
 digraph tablero{ 
- "F0C0"[shape= record label="F0,C0"];
-"F0C0"[shape= record label="F0,C0" group=1];
-"F0C1"[shape= record label="F0,C1" group=1];
-"F0C2"[shape= record label="F0,C2" group=1];
-"F0C3"[shape= record label="F0,C3" group=1];
-"F0C4"[shape= record label="F0,C4" group=1];
-"F0C5"[shape= record label="F0,C5" group=1];
-"F0C6"[shape= record label="F0,C6" group=1];
-"F0C7"[shape= record label="F0,C7" group=1];
-"F0C8"[shape= record label="F0,C8" group=1];
-"F0C9"[shape= record label="F0,C9" group=1];
-"F0C10"[shape= record label="F0,C10" group=1];
-"F0C11"[shape= record label="F0,C11" group=1];
-"F0C12"[shape= record label="F0,C12" group=1];
-"F0C13"[shape= record label="F0,C13" group=1];
-"F0C14"[shape= record label="F0,C14" group=1];
-"F0C15"[shape= record label="F0,C15" group=1];
-"F0C16"[shape= record label="F0,C16" group=1];
-"F0C17"[shape= record label="F0,C17" group=1];
-"F0C18"[shape= record label="F0,C18" group=1];
-"F0C19"[shape= record label="F0,C19" group=1];
-"F0C20"[shape= record label="F0,C20" group=1];
-"F1C0"[shape= record label="F1,C0"];
-"F1C0"[shape= record label="F1,C0" group=1];
-"F2C0"[shape= record label="F2,C0"];
-"F2C0"[shape= record label="F2,C0" group=1];
-"F3C0"[shape= record label="F3,C0"];
-"F3C0"[shape= record label="F3,C0" group=1];
-"F4C0"[shape= record label="F4,C0"];
-"F4C0"[shape= record label="F4,C0" group=1];
-"F5C0"[shape= record label="F5,C0"];
-"F5C0"[shape= record label="F5,C0" group=1];
-"F6C0"[shape= record label="F6,C0"];
-"F6C0"[shape= record label="F6,C0" group=1];
-"F7C0"[shape= record label="F7,C0"];
-"F7C0"[shape= record label="F7,C0" group=1];
-"F8C0"[shape= record label="F8,C0"];
-"F8C0"[shape= record label="F8,C0" group=1];
-"F9C0"[shape= record label="F9,C0"];
-"F9C0"[shape= record label="F9,C0" group=1];
-"F10C0"[shape= record label="F10,C0"];
-"F10C0"[shape= record label="F10,C0" group=1];
-"F11C0"[shape= record label="F11,C0"];
-"F11C0"[shape= record label="F11,C0" group=1];
-"F12C0"[shape= record label="F12,C0"];
-"F12C0"[shape= record label="F12,C0" group=1];
-"F13C0"[shape= record label="F13,C0"];
-"F13C0"[shape= record label="F13,C0" group=1];
-"F14C0"[shape= record label="F14,C0"];
-"F14C0"[shape= record label="F14,C0" group=1];
-"F15C0"[shape= record label="F15,C0"];
-"F15C0"[shape= record label="F15,C0" group=1];
-"F16C0"[shape= record label="F16,C0"];
-"F16C0"[shape= record label="F16,C0" group=1];
-"F17C0"[shape= record label="F17,C0"];
-"F17C0"[shape= record label="F17,C0" group=1];
-"F18C0"[shape= record label="F18,C0"];
-"F18C0"[shape= record label="F18,C0" group=1];
-"F19C0"[shape= record label="F19,C0"];
-"F19C0"[shape= record label="F19,C0" group=1];
-"F20C0"[shape= record label="F20,C0"];
-"F20C0"[shape= record label="F20,C0" group=1];
+ "C0F0"[shape= record label="Raiz" style=filled fillcolor=gray group=1];
+"C0F1"[shape= record label="C0,F1" style=filled fillcolor=gray group=1];
+"C0F2"[shape= record label="C0,F2" style=filled fillcolor=gray group=2];
+"C0F3"[shape= record label="C0,F3" style=filled fillcolor=gray group=3];
+"C0F4"[shape= record label="C0,F4" style=filled fillcolor=gray group=4];
+"C0F5"[shape= record label="C0,F5" style=filled fillcolor=gray group=5];
+"C0F6"[shape= record label="C0,F6" style=filled fillcolor=gray group=6];
+"C0F7"[shape= record label="C0,F7" style=filled fillcolor=gray group=7];
+"C0F8"[shape= record label="C0,F8" style=filled fillcolor=gray group=8];
+"C0F9"[shape= record label="C0,F9" style=filled fillcolor=gray group=9];
+"C0F10"[shape= record label="C0,F10" style=filled fillcolor=gray group=10];
+"C0F11"[shape= record label="C0,F11" style=filled fillcolor=gray group=11];
+"C0F12"[shape= record label="C0,F12" style=filled fillcolor=gray group=12];
+"C0F13"[shape= record label="C0,F13" style=filled fillcolor=gray group=13];
+"C0F14"[shape= record label="C0,F14" style=filled fillcolor=gray group=14];
+"C0F15"[shape= record label="C0,F15" style=filled fillcolor=gray group=15];
+"C0F16"[shape= record label="C0,F16" style=filled fillcolor=gray group=16];
+"C0F17"[shape= record label="C0,F17" style=filled fillcolor=gray group=17];
+"C0F18"[shape= record label="C0,F18" style=filled fillcolor=gray group=18];
+"C0F19"[shape= record label="C0,F19" style=filled fillcolor=gray group=19];
+"C0F20"[shape= record label="C0,F20" style=filled fillcolor=gray group=20];
+"C1F0"[shape= record label="C1,F0" style=filled fillcolor=gray group=1];
+"C2F0"[shape= record label="C2,F0" style=filled fillcolor=gray group=1];
+"C2F5"[shape= record label="" style=filled fillcolor=yellow group=5];
+"C3F0"[shape= record label="C3,F0" style=filled fillcolor=gray group=1];
+"C4F0"[shape= record label="C4,F0" style=filled fillcolor=gray group=1];
+"C4F10"[shape= record label="" style=filled fillcolor=yellow group=10];
+"C5F0"[shape= record label="C5,F0" style=filled fillcolor=gray group=1];
+"C5F15"[shape= record label="" style=filled fillcolor=green group=15];
+"C5F19"[shape= record label="" style=filled fillcolor=green group=19];
+"C6F0"[shape= record label="C6,F0" style=filled fillcolor=gray group=1];
+"C6F10"[shape= record label="" style=filled fillcolor=green group=10];
+"C7F0"[shape= record label="C7,F0" style=filled fillcolor=gray group=1];
+"C8F0"[shape= record label="C8,F0" style=filled fillcolor=gray group=1];
+"C9F0"[shape= record label="C9,F0" style=filled fillcolor=gray group=1];
+"C10F0"[shape= record label="C10,F0" style=filled fillcolor=gray group=1];
+"C10F15"[shape= record label="" style=filled fillcolor=yellow group=15];
+"C11F0"[shape= record label="C11,F0" style=filled fillcolor=gray group=1];
+"C12F0"[shape= record label="C12,F0" style=filled fillcolor=gray group=1];
+"C12F1"[shape= record label="" style=filled fillcolor=green group=1];
+"C13F0"[shape= record label="C13,F0" style=filled fillcolor=gray group=1];
+"C14F0"[shape= record label="C14,F0" style=filled fillcolor=gray group=1];
+"C15F0"[shape= record label="C15,F0" style=filled fillcolor=gray group=1];
+"C16F0"[shape= record label="C16,F0" style=filled fillcolor=gray group=1];
+"C17F0"[shape= record label="C17,F0" style=filled fillcolor=gray group=1];
+"C18F0"[shape= record label="C18,F0" style=filled fillcolor=gray group=1];
+"C19F0"[shape= record label="C19,F0" style=filled fillcolor=gray group=1];
+"C20F0"[shape= record label="C20,F0" style=filled fillcolor=gray group=1];
+"C20F18"[shape= record label="" style=filled fillcolor=yellow group=18];
 
-"F0C0" -> "F1C0"
-"F0C0" -> "F0C1"
-"F0C1" -> "F0C0"
-"F0C1" -> "F0C2"
-"F0C2" -> "F0C1"
-"F0C2" -> "F0C3"
-"F0C3" -> "F0C2"
-"F0C3" -> "F0C4"
-"F0C4" -> "F0C3"
-"F0C4" -> "F0C5"
-"F0C5" -> "F0C4"
-"F0C5" -> "F0C6"
-"F0C6" -> "F0C5"
-"F0C6" -> "F0C7"
-"F0C7" -> "F0C6"
-"F0C7" -> "F0C8"
-"F0C8" -> "F0C7"
-"F0C8" -> "F0C9"
-"F0C9" -> "F0C8"
-"F0C9" -> "F0C10"
-"F0C10" -> "F0C9"
-"F0C10" -> "F0C11"
-"F0C11" -> "F0C10"
-"F0C11" -> "F0C12"
-"F0C12" -> "F0C11"
-"F0C12" -> "F0C13"
-"F0C13" -> "F0C12"
-"F0C13" -> "F0C14"
-"F0C14" -> "F0C13"
-"F0C14" -> "F0C15"
-"F0C15" -> "F0C14"
-"F0C15" -> "F0C16"
-"F0C16" -> "F0C15"
-"F0C16" -> "F0C17"
-"F0C17" -> "F0C16"
-"F0C17" -> "F0C18"
-"F0C18" -> "F0C17"
-"F0C18" -> "F0C19"
-"F0C19" -> "F0C18"
-"F0C19" -> "F0C20"
-"F0C20" -> "F0C19"
-"F1C0" -> "F0C0"
-"F1C0" -> "F2C0"
-"F2C0" -> "F1C0"
-"F2C0" -> "F3C0"
-"F3C0" -> "F2C0"
-"F3C0" -> "F4C0"
-"F4C0" -> "F3C0"
-"F4C0" -> "F5C0"
-"F5C0" -> "F4C0"
-"F5C0" -> "F6C0"
-"F6C0" -> "F5C0"
-"F6C0" -> "F7C0"
-"F7C0" -> "F6C0"
-"F7C0" -> "F8C0"
-"F8C0" -> "F7C0"
-"F8C0" -> "F9C0"
-"F9C0" -> "F8C0"
-"F9C0" -> "F10C0"
-"F10C0" -> "F9C0"
-"F10C0" -> "F11C0"
-"F11C0" -> "F10C0"
-"F11C0" -> "F12C0"
-"F12C0" -> "F11C0"
-"F12C0" -> "F13C0"
-"F13C0" -> "F12C0"
-"F13C0" -> "F14C0"
-"F14C0" -> "F13C0"
-"F14C0" -> "F15C0"
-"F15C0" -> "F14C0"
-"F15C0" -> "F16C0"
-"F16C0" -> "F15C0"
-"F16C0" -> "F17C0"
-"F17C0" -> "F16C0"
-"F17C0" -> "F18C0"
-"F18C0" -> "F17C0"
-"F18C0" -> "F19C0"
-"F19C0" -> "F18C0"
-"F19C0" -> "F20C0"
-"F20C0" -> "F19C0"
-{rank= same; F0C0; F1C0; F2C0; F3C0; F4C0; F5C0; F6C0; F7C0; F8C0; F9C0; F10C0; F11C0; F12C0; F13C0; F14C0; F15C0; F16C0; F17C0; F18C0; F19C0; F20C0; }
+"C0F0" -> "C0F1"
+"C0F0" -> "C1F0"
+"C0F1" -> "C0F0"
+"C0F1" -> "C0F2"
+"C0F1" -> "C12F1"
+"C0F2" -> "C0F1"
+"C0F2" -> "C0F3"
+"C0F3" -> "C0F2"
+"C0F3" -> "C0F4"
+"C0F4" -> "C0F3"
+"C0F4" -> "C0F5"
+"C0F5" -> "C0F4"
+"C0F5" -> "C0F6"
+"C0F5" -> "C2F5"
+"C0F6" -> "C0F5"
+"C0F6" -> "C0F7"
+"C0F7" -> "C0F6"
+"C0F7" -> "C0F8"
+"C0F8" -> "C0F7"
+"C0F8" -> "C0F9"
+"C0F9" -> "C0F8"
+"C0F9" -> "C0F10"
+"C0F10" -> "C0F9"
+"C0F10" -> "C0F11"
+"C0F10" -> "C4F10"
+"C0F11" -> "C0F10"
+"C0F11" -> "C0F12"
+"C0F12" -> "C0F11"
+"C0F12" -> "C0F13"
+"C0F13" -> "C0F12"
+"C0F13" -> "C0F14"
+"C0F14" -> "C0F13"
+"C0F14" -> "C0F15"
+"C0F15" -> "C0F14"
+"C0F15" -> "C0F16"
+"C0F15" -> "C5F15"
+"C0F16" -> "C0F15"
+"C0F16" -> "C0F17"
+"C0F17" -> "C0F16"
+"C0F17" -> "C0F18"
+"C0F18" -> "C0F17"
+"C0F18" -> "C0F19"
+"C0F18" -> "C20F18"
+"C0F19" -> "C0F18"
+"C0F19" -> "C0F20"
+"C0F19" -> "C5F19"
+"C0F20" -> "C0F19"
+"C1F0" -> "C0F0"
+"C1F0" -> "C2F0"
+"C2F0" -> "C2F5"
+"C2F0" -> "C1F0"
+"C2F0" -> "C3F0"
+"C2F5" -> "C2F0"
+"C2F5" -> "C0F5"
+"C3F0" -> "C2F0"
+"C3F0" -> "C4F0"
+"C4F0" -> "C4F10"
+"C4F0" -> "C3F0"
+"C4F0" -> "C5F0"
+"C4F10" -> "C4F0"
+"C4F10" -> "C0F10"
+"C4F10" -> "C6F10"
+"C5F0" -> "C5F15"
+"C5F0" -> "C4F0"
+"C5F0" -> "C6F0"
+"C5F15" -> "C5F0"
+"C5F15" -> "C5F19"
+"C5F15" -> "C0F15"
+"C5F15" -> "C10F15"
+"C5F19" -> "C5F15"
+"C5F19" -> "C0F19"
+"C6F0" -> "C6F10"
+"C6F0" -> "C5F0"
+"C6F0" -> "C7F0"
+"C6F10" -> "C6F0"
+"C6F10" -> "C4F10"
+"C7F0" -> "C6F0"
+"C7F0" -> "C8F0"
+"C8F0" -> "C7F0"
+"C8F0" -> "C9F0"
+"C9F0" -> "C8F0"
+"C9F0" -> "C10F0"
+"C10F0" -> "C10F15"
+"C10F0" -> "C9F0"
+"C10F0" -> "C11F0"
+"C10F15" -> "C10F0"
+"C10F15" -> "C5F15"
+"C11F0" -> "C10F0"
+"C11F0" -> "C12F0"
+"C12F0" -> "C12F1"
+"C12F0" -> "C11F0"
+"C12F0" -> "C13F0"
+"C12F1" -> "C12F0"
+"C12F1" -> "C0F1"
+"C13F0" -> "C12F0"
+"C13F0" -> "C14F0"
+"C14F0" -> "C13F0"
+"C14F0" -> "C15F0"
+"C15F0" -> "C14F0"
+"C15F0" -> "C16F0"
+"C16F0" -> "C15F0"
+"C16F0" -> "C17F0"
+"C17F0" -> "C16F0"
+"C17F0" -> "C18F0"
+"C18F0" -> "C17F0"
+"C18F0" -> "C19F0"
+"C19F0" -> "C18F0"
+"C19F0" -> "C20F0"
+"C20F0" -> "C20F18"
+"C20F0" -> "C19F0"
+"C20F18" -> "C20F0"
+"C20F18" -> "C0F18"
+{rank= same; C0F0; C1F0; C2F0; C3F0; C4F0; C5F0; C6F0; C7F0; C8F0; C9F0; C10F0; C11F0; C12F0; C13F0; C14F0; C15F0; C16F0; C17F0; C18F0; C19F0; C20F0; }
 }

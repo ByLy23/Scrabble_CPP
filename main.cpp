@@ -75,6 +75,7 @@ string arbolis="";
             tablero->imprimir();
             arbolis="digraph tablero{ \n "+tablero->getCuerpo()+"\n"+tablero->getEnlaces()+"{rank= same; "+tablero->getGrupo()+"}\n"+"}";
             graficarReportes(arbolis,"tablero");
+            cout<<arbolis<<endl;
             tablero->setCuerpo("");
             tablero->setEnlaces("");
             tablero->setGrupo("");
@@ -141,7 +142,7 @@ void mostrarReportes(ArbolBusqueda *arbolUsuarios)
         cout<<"6. Recorrido postorden"<<endl;
         cout<<"7. "<<endl;
         cout<<"8. "<<endl;
-        cout<<"9. "<<endl;
+        cout<<"9. Estado Tablero"<<endl;
         cout<<"10. Lista doblemente enlazada de fichas de jugadores"<<endl;
         cout<<"11. Salir"<<endl;
         cin>>lectura;
@@ -211,6 +212,14 @@ void mostrarReportes(ArbolBusqueda *arbolUsuarios)
                 //lista simple que representa el escoreboard
             break;
             case 9:
+                 tablero->imprimir();
+            todoArbolito="digraph tablero{ \n "+tablero->getCuerpo()+"\n"+tablero->getEnlaces()+"{rank= same; "+tablero->getGrupo()+"}\n"+"}";
+            graficarReportes(todoArbolito,"tablero");
+            //cout<<arbolis<<endl;
+            tablero->setCuerpo("");
+            tablero->setEnlaces("");
+            tablero->setGrupo("");
+            todoArbolito="";
             //matriz dispersa
             break;
             case 10:
@@ -262,7 +271,7 @@ void leerJSON()
                 int x=casillasDobles[i]["x"].asInt();
                 int y=casillasDobles[i]["y"].asInt();
                 cout<<to_string(x)+" y "+to_string(y)<<endl;
-               // tablero->crearNodo("",doble,x,y);
+                tablero->crearNodo("",doble,x,y);
         //    cout<<"X: " <<casillasDobles[i]["x"].asString() <<endl;
           //  cout<<"Y: "<<casillasDobles[i]["y"].asString() <<endl;
         }
@@ -272,7 +281,7 @@ void leerJSON()
                 int x=casillasTriples[i]["x"].asInt();
                 int y=casillasTriples[i]["y"].asInt();
                 cout<<to_string(x)+" y "+to_string(y)<<endl;
-              //  tablero->crearNodo("",trip,x,y);
+                tablero->crearNodo("",trip,x,y);
           //  cout<<"X: " <<casillasTriples[i]["x"].asString() <<endl;
             //cout<<"Y: "<<casillasTriples[i]["y"].asString() <<endl;
         }
@@ -297,8 +306,8 @@ void graficarReportes(string archivo,string nombre)
     ofstream datos(nombreArchivo);
     datos<<archivo<<endl;
     datos.close();
-    string inicio="start dot -Tpng "+nombre+".dot -o "+nombre+".png";
-    string ejecucion= "start "+nombre+".png";
+    string inicio="start dot -Tjpg "+nombre+".dot -o "+nombre+".jpg";
+    string ejecucion= "start "+nombre+".jpg";
     system((inicio).c_str());
     system((ejecucion).c_str());
 }
@@ -373,6 +382,12 @@ void hacerCiclo(string letra, int cantidad, int punteo)
     for(int i=0; i<cantidad;i++)
     {
         AuxPalabra->insertar_final(new Palabra(letra,punteo));
+    }
+}
+void reabastercerFichas(ListaDoble<Palabra*> *palbr)
+{
+    while(palbr->getSize()!=7){
+        palbr->agregar_fin(colaPalabras->Dequeue());
     }
 }
 void asignarFichas(bool u1, bool u2)
@@ -517,17 +532,22 @@ void turnos(int jug)
             case 1:
                 larg= x+ palabra.length();
                 if(larg>DimensionTablero && y>DimensionTablero){
-
+                        //verificarLetra por letra hasta que encuentre un error, sino encuentra error, empezar a ingresar a la matriz
+                        //al decir verificar error, es que no hay una letra diferente en esa posicion
+                        //sino hay letras que ignore, si la letra es "" que ignore, al final ingresar letras
+                        //cuando vaya ingresando las letras va a tomar el multiplicador de cada posicion, la multiplica
+                        //por la cantidad de puntos
                 }else{
-                     cout<<"Vamos bien :3"<<endl;
+                     cout<<"No se puede porque el tamanio no es correcto"<<endl;
                 }
                 break;
             case 2:
                 larg=y+ palabra.length();
                 if(larg>DimensionTablero && y>DimensionTablero){
+
                 }
                 else{
-                    cout<<"Vamos bien :3"<<endl;
+                    cout<<"No se puede porque el tamanio no es correcto"<<endl;
                 }
                 break;
             }
@@ -551,6 +571,15 @@ void turnos(int jug)
 }
 void iniciarJuego()
 {
+      string todoArbolito="";
+      tablero->imprimir();
+            todoArbolito="digraph tablero{ \n "+tablero->getCuerpo()+"\n"+tablero->getEnlaces()+"{rank= same; "+tablero->getGrupo()+"}\n"+"}";
+            graficarReportes(todoArbolito,"tablero");
+            //cout<<arbolis<<endl;
+            tablero->setCuerpo("");
+            tablero->setEnlaces("");
+            tablero->setGrupo("");
+            todoArbolito="";
     srand(time(0));
     int random= rand() % 2;
     int finalizarJuego=0;
@@ -579,7 +608,15 @@ void iniciarJuego()
             cout<<"Terminar turno con 2"<<endl;
             cin>>variableTurno;
             }while(variableTurno!=2);
-
+            string todoArbolito="";
+            tablero->imprimir();
+            todoArbolito="digraph tablero{ \n "+tablero->getCuerpo()+"\n"+tablero->getEnlaces()+"{rank= same; "+tablero->getGrupo()+"}\n"+"}";
+            graficarReportes(todoArbolito,"tablero");
+            //cout<<arbolis<<endl;
+            tablero->setCuerpo("");
+            tablero->setEnlaces("");
+            tablero->setGrupo("");
+            todoArbolito="";
         }
         contadorFin++;
         int muestra= contadorFin %2;
