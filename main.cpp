@@ -738,7 +738,7 @@ void turnos(int jug)
 
 }
 void crearScoreboard(){
-    if(score!=0)
+    if(score->getTamanio()==0)
     {
         for(int i=0; i<score->getTamanio(); i++)
         {

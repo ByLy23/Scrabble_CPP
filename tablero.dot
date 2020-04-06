@@ -23,11 +23,14 @@ digraph tablero{
 "C1F0"[shape= record label="C1,F0" style=filled fillcolor=gray group= 1];
 "C1F12"[shape= record label="" style=filled fillcolor=green group=12];
 "C2F0"[shape= record label="C2,F0" style=filled fillcolor=gray group= 1];
+"C2F5"[shape= record label="e" style=filled fillcolor=blue group=5];
+"C2F6"[shape= record label="a" style=filled fillcolor=blue group=6];
 "C3F0"[shape= record label="C3,F0" style=filled fillcolor=gray group= 1];
 "C4F0"[shape= record label="C4,F0" style=filled fillcolor=gray group= 1];
 "C5F0"[shape= record label="C5,F0" style=filled fillcolor=gray group= 1];
-"C5F2"[shape= record label="" style=filled fillcolor=yellow group=2];
+"C5F2"[shape= record label="e" style=filled fillcolor=blue group=2];
 "C6F0"[shape= record label="C6,F0" style=filled fillcolor=gray group= 1];
+"C6F2"[shape= record label="a" style=filled fillcolor=blue group=2];
 "C7F0"[shape= record label="C7,F0" style=filled fillcolor=gray group= 1];
 "C8F0"[shape= record label="C8,F0" style=filled fillcolor=gray group= 1];
 "C9F0"[shape= record label="C9,F0" style=filled fillcolor=gray group= 1];
@@ -63,10 +66,10 @@ digraph tablero{
 "C0F4" -> "C10F4"
 "C0F5" -> "C0F4"
 "C0F5" -> "C0F6"
-"C0F5" -> "C15F5"
+"C0F5" -> "C2F5"
 "C0F6" -> "C0F5"
 "C0F6" -> "C0F7"
-"C0F6" -> "C10F6"
+"C0F6" -> "C2F6"
 "C0F7" -> "C0F6"
 "C0F7" -> "C0F8"
 "C0F8" -> "C0F7"
@@ -102,8 +105,16 @@ digraph tablero{
 "C1F0" -> "C2F0"
 "C1F12" -> "C1F0"
 "C1F12" -> "C0F12"
+"C2F0" -> "C2F5"
 "C2F0" -> "C1F0"
 "C2F0" -> "C3F0"
+"C2F5" -> "C2F0"
+"C2F5" -> "C2F6"
+"C2F5" -> "C0F5"
+"C2F5" -> "C15F5"
+"C2F6" -> "C2F5"
+"C2F6" -> "C0F6"
+"C2F6" -> "C10F6"
 "C3F0" -> "C2F0"
 "C3F0" -> "C4F0"
 "C4F0" -> "C3F0"
@@ -113,8 +124,12 @@ digraph tablero{
 "C5F0" -> "C6F0"
 "C5F2" -> "C5F0"
 "C5F2" -> "C0F2"
+"C5F2" -> "C6F2"
+"C6F0" -> "C6F2"
 "C6F0" -> "C5F0"
 "C6F0" -> "C7F0"
+"C6F2" -> "C6F0"
+"C6F2" -> "C5F2"
 "C7F0" -> "C6F0"
 "C7F0" -> "C8F0"
 "C8F0" -> "C7F0"
@@ -128,7 +143,7 @@ digraph tablero{
 "C10F4" -> "C10F6"
 "C10F4" -> "C0F4"
 "C10F6" -> "C10F4"
-"C10F6" -> "C0F6"
+"C10F6" -> "C2F6"
 "C11F0" -> "C10F0"
 "C11F0" -> "C12F0"
 "C12F0" -> "C11F0"
@@ -142,7 +157,7 @@ digraph tablero{
 "C15F0" -> "C16F0"
 "C15F5" -> "C15F0"
 "C15F5" -> "C15F10"
-"C15F5" -> "C0F5"
+"C15F5" -> "C2F5"
 "C15F5" -> "C19F5"
 "C15F10" -> "C15F5"
 "C15F10" -> "C0F10"
@@ -168,6 +183,48 @@ digraph tablero{
 {rank= same; C4F0;}
 {rank= same; C5F0;C5F2;}
 {rank= same; C6F0;}
+{rank= same; C7F0;}
+{rank= same; C8F0;}
+{rank= same; C9F0;}
+{rank= same; C10F0;C10F4;C10F6;}
+{rank= same; C11F0;}
+{rank= same; C12F0;}
+{rank= same; C13F0;}
+{rank= same; C14F0;}
+{rank= same; C15F0;C15F5;C15F10;}
+{rank= same; C16F0;}
+{rank= same; C17F0;}
+{rank= same; C18F0;C18F20;}
+{rank= same; C19F0;C19F5;}
+{rank= same; C20F0;}
+{rank= same; C0F0;C0F1;C0F2;C0F3;C0F4;C0F5;C0F6;C0F7;C0F8;C0F9;C0F10;C0F11;C0F12;C0F13;C0F14;C0F15;C0F16;C0F17;C0F18;C0F19;C0F20;}
+{rank= same; C1F0;C1F12;}
+{rank= same; C2F0;}
+{rank= same; C3F0;}
+{rank= same; C4F0;}
+{rank= same; C5F0;C5F2;}
+{rank= same; C6F0;C6F2;}
+{rank= same; C7F0;}
+{rank= same; C8F0;}
+{rank= same; C9F0;}
+{rank= same; C10F0;C10F4;C10F6;}
+{rank= same; C11F0;}
+{rank= same; C12F0;}
+{rank= same; C13F0;}
+{rank= same; C14F0;}
+{rank= same; C15F0;C15F5;C15F10;}
+{rank= same; C16F0;}
+{rank= same; C17F0;}
+{rank= same; C18F0;C18F20;}
+{rank= same; C19F0;C19F5;}
+{rank= same; C20F0;}
+{rank= same; C0F0;C0F1;C0F2;C0F3;C0F4;C0F5;C0F6;C0F7;C0F8;C0F9;C0F10;C0F11;C0F12;C0F13;C0F14;C0F15;C0F16;C0F17;C0F18;C0F19;C0F20;}
+{rank= same; C1F0;C1F12;}
+{rank= same; C2F0;C2F5;C2F6;}
+{rank= same; C3F0;}
+{rank= same; C4F0;}
+{rank= same; C5F0;C5F2;}
+{rank= same; C6F0;C6F2;}
 {rank= same; C7F0;}
 {rank= same; C8F0;}
 {rank= same; C9F0;}
