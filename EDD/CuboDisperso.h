@@ -249,7 +249,7 @@ void imprimir()
                     if(aux2->getFila()==0)
                         cuerpo+="\""+fil+col+"\""+"[shape= record label=\""+fil+","+col+"\" style=filled fillcolor=gray group="+to_string(aux2->getColumna())+"];\n";
                     else
-                        cuerpo+="\""+fil+col+"\""+"[shape= record label=\""+fil+","+col+"\" style=filled fillcolor=gray group=1];\n";
+                        cuerpo+="\""+fil+col+"\""+"[shape= record label=\""+fil+","+col+"\" style=filled fillcolor=gray group="+to_string(aux2->getColumna())+"];\n";
                    // cout<<fil<<endl;
                 }
                 }
@@ -258,7 +258,7 @@ void imprimir()
             aux2=aux2->getAbajo();
         }
         wolrd+="{rank= same; "+ranki+"}\n";
-        cout<<ranki<<endl;
+       // cout<<ranki<<endl;
         //grupo+= fil+col+"; ";
     aux=aux->getSiguiente();
         }

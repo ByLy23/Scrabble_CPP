@@ -111,9 +111,9 @@ void ListaSimple<T>::insertar(T dato,int index)
         while(aux!=0)
         {
             if(x==index){break;}
-            aux=aux.getSiguiente();
+            aux=aux->getSiguiente();
         }
-        Nodo sig= aux->getSiguiente();
+        Nodo* sig= aux->getSiguiente();
         aux->setSiguiente(nuevo);
         nuevo->setSiguiente(sig);
         tamanio++;

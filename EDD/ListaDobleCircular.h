@@ -36,6 +36,7 @@ private:
     Nodo *anterior;
     };
 public:
+    string grupo;
     string getEnlaces(){
         return enlaces;
     }
@@ -204,6 +205,7 @@ void ListaDobleCircular<T>::imprimirLista()
     {
         cuerpo+=aux->getDato()+"[shape= record label=\""+aux->getDato()+"\"];\n";
         enlaces+= aux->getDato()+"->"+aux->getAnterior()->getDato()+"\n"+aux->getDato()+"->"+aux->getSiguiente()->getDato()+"\n";
+        grupo+=aux->getDato()+"; ";
         x++;
         aux=aux->getSiguiente();
     }

@@ -31,6 +31,8 @@ bool verificarUsuario(string);
     string cuerpoCola="";
     string enlacesCola="";
     string cuerpoLista="";
+string cuerpoScore="";
+string enlacesScore="";
     string enlaceLista="";
     static int punteojug1=0;
     static int punteojug2=0;
@@ -44,8 +46,10 @@ NodoABB *raizs;
    ListaDobleCircular<string> *DiccionarioPalabras= new ListaDobleCircular<string>();
    ListaDoble<Palabra*> *fichaJug1= new ListaDoble<Palabra*>();
    ListaDoble<Palabra*> *fichaJug2= new ListaDoble<Palabra*>();
+   ListaSimple<Palabra*> *score= new ListaSimple<Palabra*>();
+   ListaSimple<Palabra*> *subscore= new ListaSimple<Palabra*>();
    Cola<Palabra*> *colaPalabras= new Cola<Palabra*>();
-   CuboDisperso* tablero= new CuboDisperso();
+   CuboDisperso* tablero=new CuboDisperso();
    Cola<Palabra*> *auxLista= new Cola<Palabra*>();
    Cola<Palabra*> *auxMatriz= new Cola<Palabra*>();
    ListaSimple<Palabra*> *AuxPalabra= new ListaSimple<Palabra*>();
@@ -76,7 +80,8 @@ string arbolis="";
             tablero->imprimir();
             arbolis="digraph tablero{ \n "+tablero->getCuerpo()+"\n"+tablero->getEnlaces()+tablero->getWor()+"{rank= same; "+tablero->getGrupo()+"}\n"+"}";
             graficarReportes(arbolis,"tablero");
-            cout<<arbolis<<endl;
+           // cout<<arbolis<<endl;
+           cout<<arbolis<<endl;
             tablero->setCuerpo("");
             tablero->setEnlaces("");
             tablero->setGrupo("");
@@ -152,7 +157,7 @@ void mostrarReportes(ArbolBusqueda *arbolUsuarios)
         {
         case 1:
             DiccionarioPalabras->imprimirLista();
-            todoArbolito="digraph diccionario{ \n "+DiccionarioPalabras->getCuerpo()+"\n"+DiccionarioPalabras->getEnlaces()+"}";
+            todoArbolito="digraph diccionario{ \n "+DiccionarioPalabras->getCuerpo()+"\n"+DiccionarioPalabras->getEnlaces()+"{rank= same; "+DiccionarioPalabras->grupo+"\n}";
             graficarReportes(todoArbolito,"Diccionario");
             DiccionarioPalabras->setCuerpo("");
             DiccionarioPalabras->setEnlaces("");
@@ -272,7 +277,7 @@ void leerJSON()
         for(int i=0; i<casillasDobles.size(); i++){
                 int x=casillasDobles[i]["x"].asInt();
                 int y=casillasDobles[i]["y"].asInt();
-                cout<<to_string(x)+" y "+to_string(y)<<endl;
+                //cout<<to_string(x)+" y "+to_string(y)<<endl;
                 tablero->crearNodo("",doble,x,y);
         //    cout<<"X: " <<casillasDobles[i]["x"].asString() <<endl;
           //  cout<<"Y: "<<casillasDobles[i]["y"].asString() <<endl;
@@ -282,7 +287,7 @@ void leerJSON()
         for(int i=0; i<casillasTriples.size(); i++){
                 int x=casillasTriples[i]["x"].asInt();
                 int y=casillasTriples[i]["y"].asInt();
-                cout<<to_string(x)+" y "+to_string(y)<<endl;
+              //  cout<<to_string(x)+" y "+to_string(y)<<endl;
                 tablero->crearNodo("",trip,x,y);
           //  cout<<"X: " <<casillasTriples[i]["x"].asString() <<endl;
             //cout<<"Y: "<<casillasTriples[i]["y"].asString() <<endl;
@@ -467,7 +472,7 @@ bool verificarLetra(string letr,int num)
             if(letr.compare(fichaJug1->obtener_at(i)->getLetra())==0)
             {
                 bandera=true;
-                cout<<fichaJug1->getSize()<<endl;
+                //cout<<fichaJug1->getSize()<<endl;
                 auxLista->Enqueue(fichaJug1->eliminar(i));
                 break;
             }
@@ -480,8 +485,7 @@ bool verificarLetra(string letr,int num)
             if(letr.compare(fichaJug2->obtener_at(i)->getLetra())==0)
             {
                 bandera=true;
-                cout<<fichaJug2->getSize()<<endl;
-                cout<<i<<endl;
+
                 auxLista->Enqueue(fichaJug2->eliminar(i));
                 break;
             }
@@ -531,8 +535,8 @@ void turnos(int jug)
             cin>>x;
             cout<<"Ingresa Y"<<endl;
             cin>>y;
-            cout<<"1. Ingresar Horizontal"<<endl;
-            cout<<"2. Ingresar Vertical"<<endl;
+            cout<<"1. Ingresar Vertical"<<endl;
+            cout<<"2. Ingresar Horizontal"<<endl;
             cin>>verHori;
                 int larg;
             switch(verHori)
@@ -596,7 +600,7 @@ void turnos(int jug)
                         while(auxMatriz->getTamanio()!=0)
                         {
                         Palabra* pal= auxMatriz->Dequeue();
-                            Nodo* multi= tablero->busquedaNodo(x,y);
+                            Nodo* multi= tablero->busquedaNodo(y,x);
                             if(multi!=0){
                                     if(jug==1){
                                     punteojug1+= multi->getMuti()* pal->getPunteo();}else{
@@ -674,7 +678,7 @@ void turnos(int jug)
                         while(auxMatriz->getTamanio()!=0)
                         {
                         Palabra* pal= auxMatriz->Dequeue();
-                            Nodo* multi= tablero->busquedaNodo(x,y);
+                            Nodo* multi= tablero->busquedaNodo(y,x);
                             if(multi!=0){
                                     if(jug==1){
                                     punteojug1+= multi->getMuti()* pal->getPunteo();}else{
@@ -717,6 +721,66 @@ void turnos(int jug)
             }
             }
 
+}
+void crearScoreboard(){
+    if(score!=0)
+    {
+        for(int i=0; i<score->getTamanio(); i++)
+        {
+            if(score->get_element_at(i)->getPunteo()<punteojug1)
+                score->insertar(new Palabra(usuario1, punteojug1), i);
+            else if(i==score->getTamanio())
+                score->insertar_final(new Palabra(usuario1,punteojug1));
+        }
+        for(int i=0; i<score->getTamanio(); i++)
+        {
+            if(score->get_element_at(i)->getPunteo()<punteojug2)
+                score->insertar(new Palabra(usuario2, punteojug2), i);
+            else if(i==score->getTamanio())
+                score->insertar_final(new Palabra(usuario2,punteojug2));
+        }
+    }
+    else{
+        score->insertar_final(new Palabra(usuario1,punteojug1));
+        if(score->get_element_at(0)->getPunteo()<punteojug2)
+            score->insertar(new Palabra(usuario2,punteojug2),0);
+        else if(score->get_element_at(0)->getPunteo()>punteojug2)
+            score->insertar_final(new Palabra(usuario2,punteojug2));
+        else
+            score->insertar_final(new Palabra(usuario2,punteojug2));
+    }
+    usuario1="";
+    usuario2="";
+    punteojug1=0;
+    punteojug2=0;
+}
+void guardarScore(string nombre)
+{
+    for(int i=0; i<score->getTamanio();i++)
+    {
+        if(nombre.compare(score->get_element_at(i)->getLetra())==0)
+            subscore->insertar_final(new Palabra(nombre, score->get_element_at(i)->getPunteo()));
+    }
+}
+void graficarScoreBoard()
+{
+    for(int i=0; i<score->getTamanio(); i++)
+    {
+        int j=i+1;
+        cuerpoScore+="nodo"+to_string(i)+"[shape= record label=\""+score->get_element_at(i)->getLetra()+" Punteo: "+to_string(score->get_element_at(i)->getPunteo())+"\"];\n";
+        if(j<score->getTamanio())
+            enlacesScore+="nodo"+to_string(i)+" -> nodo"+to_string(j)+"\n";
+    }
+}
+void graficarListaOrdenada()
+{
+     for(int i=0; i<subscore->getTamanio(); i++)
+    {
+        int j=i+1;
+        cuerpoScore+="nodo"+to_string(i)+"[shape= record label=\""+score->get_element_at(i)->getLetra()+" Punteo: "+to_string(score->get_element_at(i)->getPunteo())+"\"];\n";
+        if(j<score->getTamanio())
+            enlacesScore+="nodo"+to_string(i)+" -> nodo"+to_string(j)+"\n";
+    }
 }
 void iniciarJuego()
 {
@@ -801,8 +865,7 @@ void finJuego()
     }
     //guardar en listas
     //borrar
-    usuario1="";
-    usuario2="";
-    punteojug1=0;
-    punteojug2=0;
+    //guardar en scoreboard de nombres, de forma ordenada, con punteo y nombre ordenandolo por punteo
+    //lista simple ordenada de mayor a menor, con nombre de jugadores, de ahi una lista con el nombre ordenado
+    crearScoreboard();
 }
