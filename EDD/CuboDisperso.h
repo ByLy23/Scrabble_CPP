@@ -114,7 +114,16 @@ class CuboDisperso
         string cuerpo="";
         string enlaces="";
         string grupo="";
+        string wolrd="";
     public:
+        string getWor()
+        {
+            return wolrd;
+        }
+        void setWords(string grupo)
+        {
+            this->wolrd=grupo;
+        }
         string getGrupo()
         {
             return grupo;
@@ -198,6 +207,7 @@ void imprimir()
             //cuerpo+="\""+fil+col+"\""+"[shape= record label=\""+fil+","+col+"\"];\n";
 
         Nodo *aux2=aux;
+        string ranki="";
         while(aux2!=0)
         {
   string fil="C"+to_string(aux2->getFila());
@@ -243,9 +253,11 @@ void imprimir()
                    // cout<<fil<<endl;
                 }
                 }
+                ranki+=fil+col+";";
                 //cout<<fil+col<<endl;
             aux2=aux2->getAbajo();
         }
+        wolrd+="{rank= same; "+ranki+"}\n";
         grupo+= fil+col+"; ";
     aux=aux->getSiguiente();
         }

@@ -22,6 +22,7 @@ void leerJSON();
 void graficarReportes(string, string);
 void mostrarReportes(ArbolBusqueda*);
 void imprimirCola();
+void finJuego();
 void agregarCola();
 void asignarFichas(bool,bool);
 void iniciarJuego();
@@ -109,6 +110,7 @@ string arbolis="";
             if(user1 && user2){
             asignarFichas(user1,user2);
             iniciarJuego();
+            finJuego();
             }else{cout<<"No se puede iniciar ya que faltan jugadores"<<endl;}
             break;
         case 2:
@@ -576,11 +578,11 @@ void turnos(int jug)
                         else{
                         while(auxMatriz!=0)
                         {
-                           fichaJug1->agregar_fin(auxMatriz->Dequeue());
+                           fichaJug2->agregar_fin(auxMatriz->Dequeue());
                         }
                         while(auxLista!=0)
                         {
-                            fichaJug1->agregar_fin(auxLista->Dequeue());
+                            fichaJug2->agregar_fin(auxLista->Dequeue());
                         }
                         }
 
@@ -642,11 +644,11 @@ void turnos(int jug)
                         else{
                         while(auxMatriz!=0)
                         {
-                           fichaJug1->agregar_fin(auxMatriz->Dequeue());
+                           fichaJug2->agregar_fin(auxMatriz->Dequeue());
                         }
                         while(auxLista!=0)
                         {
-                            fichaJug1->agregar_fin(auxLista->Dequeue());
+                            fichaJug2->agregar_fin(auxLista->Dequeue());
                         }
                         }
 
@@ -655,10 +657,12 @@ void turnos(int jug)
                         {
                         Palabra* pal= auxMatriz->Dequeue();
                             Nodo* multi= tablero->busquedaNodo(x,y);
-                            if(multi!=0)
-                                tablero->crearNodo(pal->getLetra(),multi->getMuti(),x,y);
-                            else
-                                tablero->crearNodo(pal->getLetra(),1,x,y);
+                            if(multi!=0){
+                                    punteojug2+= multi->getMuti()* pal->getPunteo();
+                                tablero->crearNodo(pal->getLetra(),multi->getMuti(),x,y);}
+                            else{
+                                punteojug2+= pal->getPunteo();
+                                tablero->crearNodo(pal->getLetra(),1,x,y);}
                             y++;
                         }
                     }
@@ -707,7 +711,7 @@ void iniciarJuego()
         if(contadorTurno(turno))
         {
             do{
-            cout<<"Turno: "+usuario1<<endl;
+            cout<<"Turno: "+usuario1+" Punteo: "+to_string(punteojug1)<<endl;
             imprimirFichasJugador1();
             cout<<"Palabras disponibles: "<<fichasJug1<<endl;
             turnos(1);
@@ -727,7 +731,7 @@ void iniciarJuego()
         else{
             int variableTurno=0;
             do{
-            cout<<"Turno: "+usuario2<<endl;
+            cout<<"Turno: "+usuario2+" Punteo: "+to_string(punteojug2)<<endl;
             imprimirFichasJugador2();
             cout<<"Palabras disponibles: "<<fichasJug2<<endl;
             turnos(2);
@@ -752,4 +756,23 @@ void iniciarJuego()
             cin>>finalizarJuego;
         }
     }while((finalizarJuego!=50) && (colaPalabras->getTamanio()!=0));
+}
+void finJuego()
+{
+    if(punteojug1>punteojug2)
+    {
+        cout<<"El ganador es: "+usuario1<<endl;
+    }
+    else if(punteojug1==punteojug2){
+            cout<<"Empate"<<endl;
+    }
+    else{
+        cout<<"El ganador es: "+usuario2<<endl;
+    }
+    //guardar en listas
+    //borrar
+    usuario1="";
+    usuario2="";
+    punteojug1=0;
+    punteojug2=0;
 }
