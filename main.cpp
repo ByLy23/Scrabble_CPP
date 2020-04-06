@@ -74,7 +74,7 @@ string arbolis="";
         {
         case 99:
             tablero->imprimir();
-            arbolis="digraph tablero{ \n "+tablero->getCuerpo()+"\n"+tablero->getEnlaces()+"{rank= same; "+tablero->getGrupo()+"}\n"+"}";
+            arbolis="digraph tablero{ \n "+tablero->getCuerpo()+"\n"+tablero->getEnlaces()+tablero->getWor()+"{rank= same; "+tablero->getGrupo()+"}\n"+"}";
             graficarReportes(arbolis,"tablero");
             cout<<arbolis<<endl;
             tablero->setCuerpo("");
@@ -215,7 +215,7 @@ void mostrarReportes(ArbolBusqueda *arbolUsuarios)
             break;
             case 9:
                  tablero->imprimir();
-            todoArbolito="digraph tablero{ \n "+tablero->getCuerpo()+"\n"+tablero->getEnlaces()+"{rank= same; "+tablero->getGrupo()+"}\n"+"}";
+            todoArbolito="digraph tablero{ \n "+tablero->getCuerpo()+"\n"+tablero->getEnlaces()+tablero->getWor()+"{rank= same; "+tablero->getGrupo()+"}\n"+"}";
             graficarReportes(todoArbolito,"tablero");
             //cout<<arbolis<<endl;
             tablero->setCuerpo("");
@@ -388,8 +388,10 @@ void hacerCiclo(string letra, int cantidad, int punteo)
 }
 void reabastercerFichas(ListaDoble<Palabra*> *palbr)
 {
+    if(palbr->getSize()<7){
     while(palbr->getSize()!=7){
         palbr->agregar_fin(colaPalabras->Dequeue());
+    }
     }
 }
 void asignarFichas(bool u1, bool u2)
@@ -461,6 +463,7 @@ bool verificarLetra(string letr,int num)
     if(num==1)
     {
         for(int i=0; i<=fichaJug1->getSize();i++){
+                if(fichaJug1->obtener_at(i)!=0){
             if(letr.compare(fichaJug1->obtener_at(i)->getLetra())==0)
             {
                 bandera=true;
@@ -468,10 +471,12 @@ bool verificarLetra(string letr,int num)
                 auxLista->Enqueue(fichaJug1->eliminar(i));
                 break;
             }
+                }
         }
     }
     else{
         for(int i=0; i<=fichaJug2->getSize();i++){
+            if(fichaJug2->obtener_at(i)!=0){
             if(letr.compare(fichaJug2->obtener_at(i)->getLetra())==0)
             {
                 bandera=true;
@@ -479,6 +484,7 @@ bool verificarLetra(string letr,int num)
                 cout<<i<<endl;
                 auxLista->Enqueue(fichaJug2->eliminar(i));
                 break;
+            }
             }
         }
     }
@@ -591,10 +597,22 @@ void turnos(int jug)
                         {
                         Palabra* pal= auxMatriz->Dequeue();
                             Nodo* multi= tablero->busquedaNodo(x,y);
-                            if(multi!=0)
-                                tablero->crearNodo(pal->getLetra(),multi->getMuti(),x,y);
-                            else
-                                tablero->crearNodo(pal->getLetra(),1,x,y);
+                            if(multi!=0){
+                                    if(jug==1){
+                                    punteojug1+= multi->getMuti()* pal->getPunteo();}else{
+
+                                    punteojug2+= multi->getMuti()* pal->getPunteo();
+                                    }
+                                tablero->crearNodo(pal->getLetra(),multi->getMuti(),x,y);}
+                            else{
+                                    if(jug==1){
+
+                                    punteojug1+= pal->getPunteo();
+                                    }else{
+
+                                    punteojug2+=pal->getPunteo();
+                                    }
+                                tablero->crearNodo(pal->getLetra(),1,x,y);}
                             x++;
                         }
                     }
@@ -658,10 +676,20 @@ void turnos(int jug)
                         Palabra* pal= auxMatriz->Dequeue();
                             Nodo* multi= tablero->busquedaNodo(x,y);
                             if(multi!=0){
+                                    if(jug==1){
+                                    punteojug1+= multi->getMuti()* pal->getPunteo();}else{
+
                                     punteojug2+= multi->getMuti()* pal->getPunteo();
+                                    }
                                 tablero->crearNodo(pal->getLetra(),multi->getMuti(),x,y);}
                             else{
-                                punteojug2+= pal->getPunteo();
+                                    if(jug==1){
+
+                                    punteojug1+= pal->getPunteo();
+                                    }else{
+
+                                    punteojug2+=pal->getPunteo();
+                                    }
                                 tablero->crearNodo(pal->getLetra(),1,x,y);}
                             y++;
                         }
@@ -694,7 +722,7 @@ void iniciarJuego()
 {
       string todoArbolito="";
       tablero->imprimir();
-            todoArbolito="digraph tablero{ \n "+tablero->getCuerpo()+"\n"+tablero->getEnlaces()+"{rank= same; "+tablero->getGrupo()+"}\n"+"}";
+            todoArbolito="digraph tablero{ \n "+tablero->getCuerpo()+"\n"+tablero->getEnlaces()+tablero->getWor()+"{rank= same; "+tablero->getGrupo()+"}\n"+"}";
             graficarReportes(todoArbolito,"tablero");
             //cout<<arbolis<<endl;
             tablero->setCuerpo("");
@@ -718,9 +746,11 @@ void iniciarJuego()
             cout<<"Terminar turno con 2"<<endl;
             cin>>variableTurno;
             }while(variableTurno!=2);
+            reabastercerFichas(fichaJug1);
+            reabastercerFichas(fichaJug2);
             string todoArbolito="";
             tablero->imprimir();
-            todoArbolito="digraph tablero{ \n "+tablero->getCuerpo()+"\n"+tablero->getEnlaces()+"{rank= same; "+tablero->getGrupo()+"}\n"+"}";
+            todoArbolito="digraph tablero{ \n "+tablero->getCuerpo()+"\n"+tablero->getEnlaces()+tablero->getWor()+"{rank= same; "+tablero->getGrupo()+"}\n"+"}";
             graficarReportes(todoArbolito,"tablero");
             //cout<<arbolis<<endl;
             tablero->setCuerpo("");
@@ -740,7 +770,7 @@ void iniciarJuego()
             }while(variableTurno!=2);
             string todoArbolito="";
             tablero->imprimir();
-            todoArbolito="digraph tablero{ \n "+tablero->getCuerpo()+"\n"+tablero->getEnlaces()+"{rank= same; "+tablero->getGrupo()+"}\n"+"}";
+            todoArbolito="digraph tablero{ \n "+tablero->getCuerpo()+"\n"+tablero->getEnlaces()+tablero->getWor()+"{rank= same; "+tablero->getGrupo()+"}\n"+"}";
             graficarReportes(todoArbolito,"tablero");
             //cout<<arbolis<<endl;
             tablero->setCuerpo("");

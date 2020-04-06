@@ -258,7 +258,8 @@ void imprimir()
             aux2=aux2->getAbajo();
         }
         wolrd+="{rank= same; "+ranki+"}\n";
-        grupo+= fil+col+"; ";
+        cout<<ranki<<endl;
+        //grupo+= fil+col+"; ";
     aux=aux->getSiguiente();
         }
     }

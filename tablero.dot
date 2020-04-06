@@ -27,13 +27,9 @@ digraph tablero{
 "C4F0"[shape= record label="C4,F0" style=filled fillcolor=gray group=1];
 "C4F10"[shape= record label="" style=filled fillcolor=yellow group=10];
 "C5F0"[shape= record label="C5,F0" style=filled fillcolor=gray group=1];
-"C5F2"[shape= record label="o" style=filled fillcolor=blue group=2];
-"C5F3"[shape= record label="a" style=filled fillcolor=blue group=3];
-"C5F5"[shape= record label="o" style=filled fillcolor=blue group=5];
 "C5F15"[shape= record label="" style=filled fillcolor=green group=15];
 "C5F19"[shape= record label="" style=filled fillcolor=green group=19];
 "C6F0"[shape= record label="C6,F0" style=filled fillcolor=gray group=1];
-"C6F5"[shape= record label="a" style=filled fillcolor=blue group=5];
 "C6F10"[shape= record label="" style=filled fillcolor=green group=10];
 "C7F0"[shape= record label="C7,F0" style=filled fillcolor=gray group=1];
 "C8F0"[shape= record label="C8,F0" style=filled fillcolor=gray group=1];
@@ -60,10 +56,8 @@ digraph tablero{
 "C0F1" -> "C12F1"
 "C0F2" -> "C0F1"
 "C0F2" -> "C0F3"
-"C0F2" -> "C5F2"
 "C0F3" -> "C0F2"
 "C0F3" -> "C0F4"
-"C0F3" -> "C5F3"
 "C0F4" -> "C0F3"
 "C0F4" -> "C0F5"
 "C0F5" -> "C0F4"
@@ -109,7 +103,6 @@ digraph tablero{
 "C2F0" -> "C3F0"
 "C2F5" -> "C2F0"
 "C2F5" -> "C0F5"
-"C2F5" -> "C5F5"
 "C3F0" -> "C2F0"
 "C3F0" -> "C4F0"
 "C4F0" -> "C4F10"
@@ -118,32 +111,19 @@ digraph tablero{
 "C4F10" -> "C4F0"
 "C4F10" -> "C0F10"
 "C4F10" -> "C6F10"
-"C5F0" -> "C5F2"
+"C5F0" -> "C5F15"
 "C5F0" -> "C4F0"
 "C5F0" -> "C6F0"
-"C5F2" -> "C5F0"
-"C5F2" -> "C5F3"
-"C5F2" -> "C0F2"
-"C5F3" -> "C5F2"
-"C5F3" -> "C5F5"
-"C5F3" -> "C0F3"
-"C5F5" -> "C5F3"
-"C5F5" -> "C5F15"
-"C5F5" -> "C2F5"
-"C5F5" -> "C6F5"
-"C5F15" -> "C5F5"
+"C5F15" -> "C5F0"
 "C5F15" -> "C5F19"
 "C5F15" -> "C0F15"
 "C5F15" -> "C10F15"
 "C5F19" -> "C5F15"
 "C5F19" -> "C0F19"
-"C6F0" -> "C6F5"
+"C6F0" -> "C6F10"
 "C6F0" -> "C5F0"
 "C6F0" -> "C7F0"
-"C6F5" -> "C6F0"
-"C6F5" -> "C6F10"
-"C6F5" -> "C5F5"
-"C6F10" -> "C6F5"
+"C6F10" -> "C6F0"
 "C6F10" -> "C4F10"
 "C7F0" -> "C6F0"
 "C7F0" -> "C8F0"
@@ -181,5 +161,68 @@ digraph tablero{
 "C20F0" -> "C19F0"
 "C20F18" -> "C20F0"
 "C20F18" -> "C0F18"
-{rank= same; C0F0; C1F0; C2F0; C3F0; C4F0; C5F0; C6F0; C7F0; C8F0; C9F0; C10F0; C11F0; C12F0; C13F0; C14F0; C15F0; C16F0; C17F0; C18F0; C19F0; C20F0; }
+{rank= same; C0F0;C0F1;C0F2;C0F3;C0F4;C0F5;C0F6;C0F7;C0F8;C0F9;C0F10;C0F11;C0F12;C0F13;C0F14;C0F15;C0F16;C0F17;C0F18;C0F19;C0F20;}
+{rank= same; C1F0;}
+{rank= same; C2F0;C2F5;}
+{rank= same; C3F0;}
+{rank= same; C4F0;C4F10;}
+{rank= same; C5F0;C5F15;C5F19;}
+{rank= same; C6F0;C6F10;}
+{rank= same; C7F0;}
+{rank= same; C8F0;}
+{rank= same; C9F0;}
+{rank= same; C10F0;C10F15;}
+{rank= same; C11F0;}
+{rank= same; C12F0;C12F1;}
+{rank= same; C13F0;}
+{rank= same; C14F0;}
+{rank= same; C15F0;}
+{rank= same; C16F0;}
+{rank= same; C17F0;}
+{rank= same; C18F0;}
+{rank= same; C19F0;}
+{rank= same; C20F0;C20F18;}
+{rank= same; C0F0;C0F1;C0F2;C0F3;C0F4;C0F5;C0F6;C0F7;C0F8;C0F9;C0F10;C0F11;C0F12;C0F13;C0F14;C0F15;C0F16;C0F17;C0F18;C0F19;C0F20;}
+{rank= same; C1F0;}
+{rank= same; C2F0;C2F5;}
+{rank= same; C3F0;}
+{rank= same; C4F0;C4F10;}
+{rank= same; C5F0;C5F15;C5F19;}
+{rank= same; C6F0;C6F10;}
+{rank= same; C7F0;}
+{rank= same; C8F0;}
+{rank= same; C9F0;}
+{rank= same; C10F0;C10F15;}
+{rank= same; C11F0;}
+{rank= same; C12F0;C12F1;}
+{rank= same; C13F0;}
+{rank= same; C14F0;}
+{rank= same; C15F0;}
+{rank= same; C16F0;}
+{rank= same; C17F0;}
+{rank= same; C18F0;}
+{rank= same; C19F0;}
+{rank= same; C20F0;C20F18;}
+{rank= same; C0F0;C0F1;C0F2;C0F3;C0F4;C0F5;C0F6;C0F7;C0F8;C0F9;C0F10;C0F11;C0F12;C0F13;C0F14;C0F15;C0F16;C0F17;C0F18;C0F19;C0F20;}
+{rank= same; C1F0;}
+{rank= same; C2F0;C2F5;}
+{rank= same; C3F0;}
+{rank= same; C4F0;C4F10;}
+{rank= same; C5F0;C5F15;C5F19;}
+{rank= same; C6F0;C6F10;}
+{rank= same; C7F0;}
+{rank= same; C8F0;}
+{rank= same; C9F0;}
+{rank= same; C10F0;C10F15;}
+{rank= same; C11F0;}
+{rank= same; C12F0;C12F1;}
+{rank= same; C13F0;}
+{rank= same; C14F0;}
+{rank= same; C15F0;}
+{rank= same; C16F0;}
+{rank= same; C17F0;}
+{rank= same; C18F0;}
+{rank= same; C19F0;}
+{rank= same; C20F0;C20F18;}
+{rank= same; }
 }
