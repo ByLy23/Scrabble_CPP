@@ -24,6 +24,9 @@ void mostrarReportes(ArbolBusqueda*);
 void imprimirCola();
 void finJuego();
 void agregarCola();
+void graficarListaOrdenada();
+void graficarScoreBoard();
+void guardarScore(string);
 void asignarFichas(bool,bool);
 void iniciarJuego();
 void imprimirFichas(ListaDoble<Palabra*> *lista);
@@ -81,7 +84,7 @@ string arbolis="";
             arbolis="digraph tablero{ \n "+tablero->getCuerpo()+"\n"+tablero->getEnlaces()+tablero->getWor()+"{rank= same; "+tablero->getGrupo()+"}\n"+"}";
             graficarReportes(arbolis,"tablero");
            // cout<<arbolis<<endl;
-           cout<<arbolis<<endl;
+          // cout<<arbolis<<endl;
             tablero->setCuerpo("");
             tablero->setEnlaces("");
             tablero->setGrupo("");
@@ -137,6 +140,7 @@ void mostrarReportes(ArbolBusqueda *arbolUsuarios)
 {
             system("cls");
     string todoArbolito="";
+    string nombre="";
     int lectura=0;
     do
     {
@@ -147,8 +151,8 @@ void mostrarReportes(ArbolBusqueda *arbolUsuarios)
         cout<<"4. Recorrido preorden"<<endl;
         cout<<"5. Recorrido inorden"<<endl;
         cout<<"6. Recorrido postorden"<<endl;
-        cout<<"7. "<<endl;
-        cout<<"8. "<<endl;
+        cout<<"7. Busqueda por nombre"<<endl;
+        cout<<"8. Recorrido scoreBoard"<<endl;
         cout<<"9. Estado Tablero"<<endl;
         cout<<"10. Lista doblemente enlazada de fichas de jugadores"<<endl;
         cout<<"11. Salir"<<endl;
@@ -157,8 +161,8 @@ void mostrarReportes(ArbolBusqueda *arbolUsuarios)
         {
         case 1:
             DiccionarioPalabras->imprimirLista();
-            todoArbolito="digraph diccionario{ \n "+DiccionarioPalabras->getCuerpo()+"\n"+DiccionarioPalabras->getEnlaces()+"{rank= same; "+DiccionarioPalabras->grupo+"\n}";
-            graficarReportes(todoArbolito,"Diccionario");
+            todoArbolito="digraph diccionario{ \n "+DiccionarioPalabras->getCuerpo()+"\n"+DiccionarioPalabras->getEnlaces()+"{rank= same; "+DiccionarioPalabras->grupo+"}\n}";
+            graficarReportes(todoArbolito,"diccionario");
             DiccionarioPalabras->setCuerpo("");
             DiccionarioPalabras->setEnlaces("");
             todoArbolito="";
@@ -213,9 +217,20 @@ void mostrarReportes(ArbolBusqueda *arbolUsuarios)
             //recorrido POSTORDEN del arbol
             break;
         case 7:
+            cout<<"Ingrese nombre de usuario si existe"<<endl;
+            cin>>nombre;
+            guardarScore(nombre);
+            graficarListaOrdenada();
             //lista simple enlazada ordenada del historial de puntajes por jugador, recibe un parametro el cual es el nombre del usuario
             break;
             case 8:
+                graficarScoreBoard();
+            todoArbolito="digraph Colapalabras{ \n linkdir=LR \n"+cuerpoScore+"\n"+enlacesScore+"}";
+            //cout<<todoArbolito<<endl;
+            graficarReportes(todoArbolito,"ColaPalabras");
+            cuerpoScore="";
+            enlacesScore="";
+            todoArbolito="";
                 //lista simple que representa el escoreboard
             break;
             case 9:
@@ -278,7 +293,7 @@ void leerJSON()
                 int x=casillasDobles[i]["x"].asInt();
                 int y=casillasDobles[i]["y"].asInt();
                 //cout<<to_string(x)+" y "+to_string(y)<<endl;
-                tablero->crearNodo("",doble,x,y);
+                tablero->crearNodo("",doble,y,x);
         //    cout<<"X: " <<casillasDobles[i]["x"].asString() <<endl;
           //  cout<<"Y: "<<casillasDobles[i]["y"].asString() <<endl;
         }
@@ -288,7 +303,7 @@ void leerJSON()
                 int x=casillasTriples[i]["x"].asInt();
                 int y=casillasTriples[i]["y"].asInt();
               //  cout<<to_string(x)+" y "+to_string(y)<<endl;
-                tablero->crearNodo("",trip,x,y);
+                tablero->crearNodo("",trip,y,x);
           //  cout<<"X: " <<casillasTriples[i]["x"].asString() <<endl;
             //cout<<"Y: "<<casillasTriples[i]["y"].asString() <<endl;
         }

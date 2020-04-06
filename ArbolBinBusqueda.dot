@@ -1,6 +1,10 @@
 digraph graficaArbolito{ 
  linkdir=LR 
-lala[shape= circle label="lala"];
+byron[shape= circle label="byron"];
+lali[shape= circle label="lali"];
+lali[shape= circle label="lali"];
 
-lala->le
+byron->lali
+lali->juan
+lali->marcos
 }

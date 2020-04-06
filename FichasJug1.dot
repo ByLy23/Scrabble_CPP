@@ -1,16 +1,16 @@
 digraph FichasJug1{ 
  linkdir=LR 
-nodo0[shape= record label="e
- Punteo: 1"];
-nodo1[shape= record label="j
- Punteo: 8"];
-nodo2[shape= record label="o
+nodo0[shape= record label="f
+ Punteo: 4"];
+nodo1[shape= record label="c
+ Punteo: 3"];
+nodo2[shape= record label="u
  Punteo: 1"];
 nodo3[shape= record label="t
  Punteo: 1"];
-nodo4[shape= record label="e
+nodo4[shape= record label="s
  Punteo: 1"];
-nodo5[shape= record label="l
+nodo5[shape= record label="t
  Punteo: 1"];
 nodo6[shape= record label="a
  Punteo: 1"];
